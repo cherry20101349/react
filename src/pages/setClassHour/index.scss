@@ -1,0 +1,276 @@
+.w1200 {
+    width: 1208px;
+    margin: 0 auto;
+}
+.set-course {
+    padding: 30px 60px 50px 40px;
+    font-size: 0;
+}
+.set-course .down,.set-course .up,.practice-icon, .delete, .task-icon, .icon2, .icon {
+    display: inline-block;
+    width: 30px;
+    height: 36px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.delete {
+    font-size: 20px !important;
+    margin-left: 18px;
+    color: #C7CDD3;
+}
+.set-course .up {
+    background: url('../../assets/images/icon.png') no-repeat -278px -192px;
+}
+.set-course .down {
+    background: url('../../assets/images/icon.png') no-repeat -257px -192px;
+}
+.set-course .course-icon {
+    display: inline-block;
+    width: 34px;
+    height: 36px;
+    vertical-align: middle;
+    background: url('../../assets/images/icon.png') no-repeat -535px -185px;
+}
+.more-btn {
+    background: url('../../assets/images/icon.png') no-repeat -572px -247px;
+    margin-left: 8px;
+    position: relative;
+}
+.add-section,.add-task,.more-btn{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 101px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: #40B1F4;
+    margin-left: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(64, 177, 244, 1);
+    border-radius:3px;
+}
+.add-section .iconfont,.add-task .iconfont,.more-btn .iconfont{
+    font-size: 22px;
+    vertical-align: middle;
+}
+.set-course input {
+    height: 34px;
+    border: 1px solid #EAECEE;
+    padding-left: 10px;
+}
+/*设置课程名*/
+.set-course-name input {
+    width: 504px;
+}
+/*设置章节*/
+.set-section input {
+    width: 452px;
+}
+.set-section {
+    padding: 0 0 0 22px;
+}
+.set-section>li:first-of-type {
+    margin-top: 20px;
+}
+/*设置课时*/
+.set-task1 {
+    padding-left: 30px;
+}
+.set-task1 li {
+    margin-top: 20px;
+    padding-left: 38px;
+    position: relative;
+}
+.set-section li {
+    margin-bottom: 20px;
+    position: relative;
+}
+.set-task1 input {
+    width: 417px;
+}
+.icon2 {
+    background: url('../../assets/images/icon.png') no-repeat -595px -185px;
+}
+.task-icon {
+    background: url('../../assets/images/icon.png') no-repeat -606px -247px;
+}
+.practice-icon{
+    background: url("../../assets/images/icon.png") no-repeat -661px -247px;
+}
+.over {
+    display: block;
+    position: absolute;
+    bottom: 24px;
+    right: 0;
+    width: 100%;
+    height: 14px;
+    background: transparent;
+}
+ul.more-operate {
+    display: none;
+    position: absolute;
+    bottom: 34px;
+    right: -25px;
+    width: 128px;
+
+    padding: 8px 0;
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    z-index: 66;
+    border-radius: 2px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+ul.more-operate::before {
+    position: absolute;
+    left: 50%;
+    content: " ";
+    box-sizing: border-box;
+    bottom: -10px;
+    margin-left: -10px;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 10px;
+    border-bottom-width: 0;
+    border-top-color: #fff;
+}
+ul.more-operate::after {
+    position: absolute;
+    content: " ";
+    bottom: -13px;
+    width: 100%;
+    height: 20px;
+}
+ul.more-operate li {
+    margin: 0;
+
+    font-style: normal;
+    color: #646464;
+}
+ul.more-operate li i {
+    margin-right: 10px;
+    color: #999999;
+}
+.more-btn:hover ul.more-operate{
+    display: block;
+}
+ul.more-operate li:hover ,ul.more-operate li:hover i{
+    background: #40b1f4;
+    color: #fff;
+}
+ul.more-operate li i {
+    margin-right: 10px;
+    color: #999999;
+}
+
+.upload-source,.schedule{
+    display: none;
+    width: 528px;
+    background: white;
+    padding: 0 40px;
+}
+.upload-source .close,.schedule .close{
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 15px;
+    height: 15px;
+    background: url("../../assets/images/icon.png") -89px -467px;
+    cursor: pointer;
+    transition: all 300ms linear;
+}
+.upload-source .title, .schedule .title{
+    height: 68px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 17px;
+}
+
+/*设置上传资源弹框--上传视频样式*/
+#videos-upload .form-control {
+    height: auto;
+}
+.k-progress{
+    display: none;
+}
+.k-upload-files{
+    max-height: 100px;
+    overflow-y: auto;
+}
+.empty-task{
+    /*color: red;*/
+    color: #A0A0A0;
+}
+
+#addBtn {
+    background-image: url('../../assets/images/add_class.png');
+    background-size: 10px 10px;
+    background-position: 8px 8px;
+    background-repeat: no-repeat;
+}
+
+#exportPointC {
+    // background-image: url('../../assets/images/export_integral.png');
+    background-size: 10px 10px;
+    background-position: 8px 8px;
+    background-repeat: no-repeat;
+}
+
+/*设置课时状态*/
+/*// 1. UPLOAD  : 微课已上传*/
+/*// 2. SCHE : 已专递预约*/
+/*// 3. INTERACT：已互动预约*/
+/*// 4. UNKNOW : 未设置课时*/
+.has-weike {
+    background:#FFBD82;
+    color: #fff;
+    border: 1px solid #FFBD82;
+}
+.has-zhuandi {
+    background: #4BD2BA;
+    color: #fff;
+    border: 1px solid #4BD2BA;
+}
+.has-hudong {
+    background: #9FA8FF;
+    color: #fff;
+    border: 1px solid #9FA8FF;
+
+}
+.task-sche, .task-upload, .task-interact {
+    width: 128px;
+    height: 32px;
+    padding: 0 !important;
+    line-height: 32px;
+}
+.task-upload1 {
+    color: red;
+}
+.tips {
+    position: absolute;
+    left: 130px;
+    display: inline-block;
+    width: 180px;
+    padding: 11px;
+    color: #A0A0A0;
+    background: red;
+    opacity: 0;
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(227, 227, 227, 1);
+    box-shadow:0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+    border-radius:6px;
+}
+.tips-zhuandi {
+    top: 40px;
+}
+.tips-weike {
+    top: 0;
+}
+.tips-hudong {
+
+    top: 70px;
+}
+.none {
+    display: none;
+}

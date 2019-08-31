@@ -1,0 +1,70 @@
+/*提示框2.0*/
+.prompt-close-container {
+    /*height: 56px;*/
+    height: 55px;
+    vertical-align: middle;
+}
+.prompt2-title {
+    font-size: 18px;
+}
+.prompt2-img {
+    margin: 46px 0 24px;
+}
+.prompt2-content {
+    line-height: 1.4;
+    font-size: 14px;
+    color: #323232;
+}
+.prompt2 {
+    text-align: center;
+    width: 400px;
+    padding: 0 42px;
+    border: 1px solid #d0cfcf;
+    position: fixed;
+    z-index: 999;
+    background: #fff;
+}
+.control-prompt2 {
+    display: flex;
+    justify-content: center;
+    margin: 64px 0 48px;
+}
+.ensure-prompt2 {
+    width: 120px;
+    height: 36px;
+    font-size: 14px;
+    background: #40B1F4;
+    color: #fff;
+    border-radius: 3px;
+    outline: none;
+}
+.close-prompt2 {
+    width: 60px;
+    height: 60px;
+    margin: 46px 0 24px;
+}
+.cancel-prompt{
+    width: 180px;
+    height: 38px;
+    text-align: center;
+    line-height: 38px;
+    cursor: pointer;
+    color: #9d9d9e;
+    border-radius: 2px;
+    background: white;
+    margin-right: 40px;
+    border:1px solid #E0E4E7;
+}
+.close  {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 15px;
+    height: 15px;
+    background: url("../../assets/images/icon.png") -89px -467px;
+    cursor: pointer;
+    transition: all 300ms linear;
+}
+.close:hover {
+    background: url("../../assets/images/icon.png") -89px -437px;
+}

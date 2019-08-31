@@ -1,0 +1,170 @@
+/*筛选条件样式*/
+.content {
+    margin-top: 60px;
+}
+.course-center h3.title{
+    height: 80px;
+    line-height: 80px;
+    width: 100%;
+    font-size: 21px;
+}
+.screenCourse{
+    width: 1208px;
+    border:1px solid #EAECEE;
+    background: white;
+    /*margin-bottom: 50px;*/
+    margin-bottom: 20px;
+}
+.screenLi{
+    min-height: 50px;
+    width: 100%;
+    border-bottom:1px dashed #EAECEE;
+    overflow: hidden;
+}
+.screenLi span{
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    width: 90px;
+    padding-left:20px ;
+    color: #A1A1A1;
+}
+.screenLi:last-of-type{
+    border-bottom:none;
+}
+.subject-list{
+    width: 1098px;
+}
+.subject-list li{
+    display: inline-block;
+    padding:7px 10px;
+    margin:12px 12px 0 0;
+    cursor: pointer;
+}
+.active{
+    background: #40B1F4;
+    color:white;
+    border-radius: 2px;
+}
+
+/*教材目录样式*/
+.course-wrap{
+    overflow: hidden;
+}
+.version-con{
+    width: 220px;
+    background: #ffffff;
+    min-height: 500px;
+    color: #646464;
+    border:1px solid #eaecee;
+}
+.version-con h3{
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #eaecee;
+    text-align: center;
+    color: #A1A1A1;
+    font-weight: normal;
+    font-size: 14px;
+}
+.assortment .type-name{
+    width: 100%;
+    height: 49px;
+    line-height: 49px;
+    border-bottom: 1px dashed #EAECEE;
+    position: relative;
+    padding: 0 40px 0 53px;
+}
+.type-name i.icon,.version-item i{
+    position: absolute;
+    top: 9px;
+    width: 30px;
+    height: 30px;
+}
+.type-name i.icon{
+    left: 15px;
+    // background: url("../../images/icon.png") -238px -459px;
+}
+.version-item i{
+    left: 45px;
+    // background: url("../../images/icon.png") -290px -459px;
+}
+.version-item{
+    width: 100%;
+    height: 49px;
+    line-height: 49px;
+    padding-left: 78px;
+    border-bottom: 1px dashed #EAECEE;
+    position: relative;
+}
+
+.course-right{
+    width: 960px;
+}
+.all-filter{
+    width: 100%;
+    border:1px solid #eaecee;
+    background: white;
+    padding: 12px 30px;
+}
+.filter-list{
+    overflow: hidden;
+    width: 100%;
+}
+.filter-item label{
+    color: #999999;
+}
+.filter-item select{
+    width: 184px;
+    height: 26px;
+    color: #646464;
+}
+.filter-item input{
+    width: 144px;
+    height: 26px;
+    border:1px solid #eaecee;
+    margin-right: 10px;
+}
+.filter-item button{
+    width: 84px;
+    height: 26px;
+}
+.filter-item button.time{
+    border:1px solid #eaecee;
+    margin-right: 30px;
+}
+.filter-item button.cilck-rate{
+    margin-right: 30px;
+}
+.filter-item button.cilck-rate,.filter-item button.global-search{
+    background: #40b1f4;
+    color:#ffffff;
+    border:1px solid #40b1f4;
+}
+.filter-item button.global-search{
+    width: 56px;
+}
+
+.allVideoList{
+    margin-top: 20px;
+}
+.allVideoList .resource:nth-of-type(4n) {
+    margin-right: 0 !important;
+}
+.allVideoList .resource:nth-of-type(5n) {
+    margin-right: 26px!important;
+}
+.videoList{
+    overflow: hidden;
+    width: 100%;
+}
+.videoList .resource{
+    margin-right: 26px!important;
+}
+
+.resource:nth-of-type(5n) {
+    margin-right: 0!important;
+}
+.btn {
+    background: red;
+}

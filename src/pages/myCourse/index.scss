@@ -1,0 +1,940 @@
+.w1200.row {
+    overflow: inherit;
+}
+.w1200 {
+    width: 1208px;
+    margin: 0 auto;
+}
+.my-course{
+    width: 100%;
+    width: 100%;
+    margin-top: 30px;
+    background: white;
+    min-height: 679px;
+}
+#my-course{
+    padding: 0 20px 20px;
+}
+.my-course h3.title {
+    font-size: 16px;
+    padding: 21px 20px;
+    border-bottom: 1px solid #eaecee;
+}
+.my-course h3.title:first-of-type a.title-link {
+    padding: 5px 13px;
+    background: #40b1f4;
+    color: white;
+    border-radius: 2px;
+    margin-top: -3px;
+    font-size: 12px;
+}
+.course-tab{
+    height: 52px;
+    overflow: hidden;
+}
+.course-tab li{
+    float: left;
+    height: 52px;
+    line-height: 52px;
+    margin-right: 30px;
+    cursor: pointer;
+    text-align: center;
+    color:#646464;
+}
+.course-tab .active{
+    position: relative;
+    color:#323232;
+    background: white;
+}
+.course-tab .active::before{
+    content:"";
+    position: absolute;
+    bottom: 0;
+    left:0;
+    height: 3px;
+    width: 100%;
+    background: #40B1F4;
+}
+.select-wrapper{
+    margin-top: 20px;
+    padding: 0 23px;
+}
+.select-wrapper .select-text{
+    width: 148px;
+    height: 28px;
+    border: 1px solid #EAECEE;
+    padding-left: 8px;
+}
+.select-wrapper button{
+    margin-left: 10px;
+    background: #40b1f4;
+    color: #ffffff;
+    padding: 4px 10px;
+}
+.select-wrapper .filler-list{
+    margin-top: 20px;
+    border: 1px solid #EAECEE;
+}
+.select-wrapper .filler-list .filler-item{
+    display: flex;
+}
+.select-wrapper .filler-list .filler-item:first-of-type{
+    border-bottom: 1px dashed #EAECEE;
+}
+.select-wrapper .filler-list .filler-item span{
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    width: 90px;
+    padding-left: 20px;
+    color: #A1A1A1;
+}
+.filler-item .active{
+    background: #40B1F4;
+    color: white;
+    border-radius: 2px;
+}
+.filler-item .subject-list,.filler-item .grade-list{
+    display: inline-block;
+    vertical-align: top;
+    flex: 1%;
+    padding-top: 12px;
+}
+.filler-item .subject-list li,.filler-item .grade-list li {
+    display: inline-block;
+    padding: 7px 10px;
+    margin: 0 12px 12px 0;
+    cursor: pointer;
+}
+.course-list{
+    min-height: 450px;
+    /*overflow: hidden;*/
+    padding: 20px 23px 0 23px;
+}
+.course-list li.course-list-item,.course-list li.course{
+    width: 248px!important;
+    margin-right: 38px;
+    /*float: left;*/
+    display: inline-block;
+    margin-bottom: 40px;
+    position: relative;
+}
+.course-list li.course-list-item:hover .info-list{
+    display: block;
+}
+.course-list li:nth-of-type(4n){
+    margin-right: 0;
+}
+.course-list .source-img{
+    display: inline-block;
+    width: 248px;
+    /*height: 140px;*/
+}
+.course-list .source-img p:hover{
+    color:#40b1f4;
+}
+.course-list .course-title{
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.course-list .resource{
+    border-bottom: 1px solid #EAECEE;
+}
+.course-list .no-resource {
+    margin-top: 140px!important;
+}
+.course-list .no-resource i {
+    display: inline-block;
+    width: 130px;
+    height: 111px;
+    background: url("../../assets/images/icon.png") no-repeat -746px -339px;
+}
+.course-list .no-resource p {
+    color: #c0c0c0;
+}
+.course-list li .course-img{
+    width: 248px;
+    height: 140px;
+    display: inline-block;
+}
+.course-list li img{
+    width: 248px;
+    height: 140px;
+    display: inline-block;
+}
+.course-list .course-info{
+    box-sizing: border-box;
+    height: 74px;
+    padding-top: 16px;
+    /*line-height: 54px;*/
+    border-bottom: 1px solid #EAECEE;
+    padding-left: 2px;
+}
+.course-list .info-list{
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    background: rgba(0, 0, 0, .5);
+    border-left: 1px solid #EAECEE;
+    border-right: 1px solid #EAECEE;
+    border-bottom: 1px solid #EAECEE;
+    border-radius: 1px;
+    padding: 6px 10px;
+    display: none;
+    z-index: 33;
+    width: 100%;
+    height: 140px;
+    cursor: pointer;
+}
+
+.course-list .info-list li{
+    color: #fff;
+    padding: 4px 0;
+    margin-bottom: 0;
+    line-height: 1
+}
+.course-list .info-list li span:first-of-type{
+    /*color: #999999;*/
+    margin-right: 14px;
+}
+.course-list .info-list li span:last-of-type{
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.course-name{
+    width: 200px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.operation{
+    height: 54px;
+    width: 30px;
+    cursor: pointer;
+    position: relative;
+}
+.operation:hover ul{
+    display: block;
+}
+.operation i{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url("../../assets/images/icon.png") no-repeat -30px -518px;
+}
+.operation ul{
+    /*display: none;*/
+    /*position: absolute;*/
+    /*top: -175px;*/
+    /*left: -88px;*/
+    /*width: 118px;*/
+    /*height: 189px;*/
+    /*background: white;*/
+    /*border: 1px solid #DCDCDC;*/
+    /*padding: 9px 0 9px 30px;*/
+    /*!*z-index:99;*!*/
+    /*z-index: 90;*/
+    display: none;
+    position: absolute;
+    top: -63px;
+    left: -88px;
+    width: 118px;
+    height: 76px;
+    background: white;
+    border: 1px solid #DCDCDC;
+    padding: 9px 0 9px 30px;
+    z-index: 90;
+}
+.operation ul:before{
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 95px;
+    width: 12px;
+    height: 12px;
+    border-right: 1px solid #DCDCDC;
+    border-bottom: 1px solid #DCDCDC;
+    border-left: 1px solid transparent;
+    border-top: 1px solid transparent;
+    transform: rotate(45deg);
+    z-index: 111;
+    background: white;
+}
+.operation ul li{
+    line-height: 28px;
+    color:#646464;
+}
+.operation ul li:hover{
+    color:#15a0f3;
+}
+
+/*创建课程*/
+.create-course{
+    padding: 32px 50px 0 50px;
+}
+.create-course .title{
+    height: 44px;
+    line-height: 44px;
+    border-bottom: 1px solid #F5F5F5;
+    color:#999999;
+    font-size: 14px;
+}
+.course-type{
+    margin-top: 20px;
+    color: #646464;
+}
+.course-type span{
+    margin-right: 20px;
+}
+.course-type label{
+    margin-right: 19px;
+}
+.type-list{
+    margin-left: 100px;
+    overflow: hidden;
+}
+.type-item{
+    float: left;
+    width: 190px;
+    height: 240px;
+    background: #f0f2f4;
+    margin-right: 40px;
+    cursor: pointer;
+    padding: 0 15px;
+    position: relative;
+    /*border-radius: 5px;*/
+}
+.type-item.active{
+    background: #40b1f4;
+}
+.type-item.active:before{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: url("../../assets/images/icon.png") no-repeat -359px -463px;
+}
+.type-item.active .type-con,.type-item.active .type-info{
+    color: #ffffff;
+}
+.type-item:last-of-type{
+    margin-right: 0;
+}
+.type-con{
+    height: 110px;
+    color: #3f3f3f;
+    text-align: center;
+    font-size: 17px;
+    padding-top: 25px;
+}
+.type-con i.iconfont{
+    font-size: 40px;
+}
+.type-con .type-name{
+    margin-top: 10px;
+}
+.name-con{
+    margin-top: 20px;
+}
+.name-con .name{
+    width: 883px;
+    border: 1px solid #eaecee;
+    height: 30px;
+    padding-left: 10px;
+    margin-left: 20px;
+}
+.type-info{
+    font-size: 12px;
+    line-height: 25px;
+    padding: 0 5px 10px 5px;
+    color: #999999;
+}
+/*++++++*/
+.set-time{
+    color: #646464;
+    margin: 30px 0;
+    overflow: hidden;
+}
+.set-time li{
+    width: 45.5%;
+    display: inline-block;
+}
+.set-time li:first-child{
+    margin-right: 9%;
+}
+.snow{
+    position: relative;
+    top: 2px;
+    line-height: 34px;
+    margin-left: 5px;
+    color: #ef5f5f;
+    font-weight: normal;
+    font-size: 12px;
+}
+.set-time .time{
+    height: 34px;
+    line-height: 34px;
+    width: 202px;
+    margin-left: 24px;
+    text-indent: 10px;
+    border: 1px solid #eaecee;
+}
+/*++++++*/
+.set-course{
+    /*margin-bottom: 20px;*/
+    padding-bottom: 20px;
+}
+.set-course .add,.set-course-name .up,.set-course-name .down,.set-section .up,.set-section .down,.practice-icon,
+.more-btn,.delete,.task-icon,.icon2,.icon{
+    display: inline-block;
+    width: 30px;
+    height: 36px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.set-course-name .up,.set-section .up{
+    background: url("../../assets/images/icon.png") no-repeat -278px -192px;
+}
+.set-course-name .down,.set-section .down{
+    background: url("../../assets/images/icon.png") no-repeat -257px -192px;
+}
+.set-course-name .course-icon,.set-section .course-icon{
+    display: inline-block;
+    width: 34px;
+    height: 36px;
+    vertical-align: middle;
+    background: url("../../assets/images/icon.png") no-repeat -535px -185px;
+}
+.set-course .add{
+    background: url("../../assets/images/icon.png") no-repeat -535px -247px;
+    margin-left: 8px;
+}
+.delete{
+    background: url("../../assets/images/icon.png") no-repeat -640px -247px;
+}
+.task-icon{
+    background: url("../../assets/images/icon.png") no-repeat -606px -247px;
+}
+.practice-icon{
+    background: url("../../assets/images/icon.png") no-repeat -661px -247px;
+}
+.icon2{
+    background: url("../../assets/images/icon.png") no-repeat -600px -185px;
+}
+.set-course-name input,.set-section input,.set-task input{
+    height: 34px;
+    border: 1px solid #EAECEE;
+    padding-left: 10px;
+}
+.set-course-name input{
+    width: 504px;
+}
+.set-section input{
+    width: 444px;
+}
+.set-task input{
+    width: 414px;
+}
+.set-section{
+    /*padding: 20px 0 0 60px;*/
+    padding: 0 0 0 60px;
+    /*background: green;*/
+}
+.set-section li{
+    margin-bottom: 20px;
+}
+.set-section li:last-of-type{
+    margin-bottom: 0;
+}
+.set-section>li:first-of-type{
+    margin-top: 20px;
+}
+.set-task{
+    padding-left:30px;
+}
+.set-task li{
+    margin-top: 20px;
+    padding-left: 35px;
+    position: relative;
+}
+.more-btn{
+    background: url("../../assets/images/icon.png") no-repeat -572px -247px;
+    margin-left: 8px;
+    position: relative;
+}
+.more-btn:hover .more-operate{
+    display: inline-block;
+}
+
+ul.more-operate{
+    display: none;
+    position: absolute;
+    bottom: 40px;
+    right: -48px;
+    width: 128px;
+    /*height: 110px;*/
+    padding: 7px 0;
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    z-index: 66;
+    border-radius: 2px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+ul.more-operate::after{
+    position: absolute;
+    left: 50%;
+    content: " ";
+    box-sizing: border-box;
+    bottom: -10px;
+    margin-left: -10px;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 10px;
+    border-bottom-width: 0;
+    border-top-color: #fff;
+}
+ul.more-operate li{
+    margin: 0;
+    padding: 9px 22px;
+    font-style: normal;
+    color:#646464;
+}
+ul.more-operate li.active,ul.more-operate li:hover{
+    background: #40b1f4;
+    color: #fff;
+}
+ul.more-operate li i{
+    margin-right: 10px;
+    color:#999999;
+}
+ul.more-operate li:hover i{
+    color: #fff;
+}
+
+.sourceMiniPic{
+    /*margin-bottom: 30px;*/
+    margin-bottom: 40px;
+}
+.sourceMiniPic h3,.description h3{
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #646464;
+}
+.sourceMiniPic .selectPic{
+    position: relative;
+    height: 122px;
+    width: 218px;
+    background: #f0f2f4;
+    border: 1px solid #eaecee;
+    text-align: center;
+}
+.sourceMiniPic .selectPic .addPic img{
+    width: 212px;
+    height: 120px;
+}
+.sourceMiniPic .selectPic span{
+    color: #999999;
+    display: inline-block;
+    margin-top: 10px;
+}
+.sourceMiniPic .selectPic input[type="file"]{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.description textarea{
+    height: 118px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #eaecee;
+    color: #646464;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.save-cancel{
+    height: 120px;
+    text-align: center;
+}
+.save-cancel button{
+    width: 100px;
+    height: 38px;
+    border-radius: 2px;
+    cursor: pointer;
+    border:none;
+    margin-top: 40px;
+}
+.save-cancel button.cancel{
+    margin-right: 20px;
+    background: #fff;
+    border: 1px solid #e0e2e4;
+    color: #7f7f80;
+}
+.save-cancel button.save{
+    background: #40b1f4;
+    border: 1px solid #40b1f4;
+    color: #fff;
+}
+
+/*上传视频及预约课表弹框*/
+.upload-source,.schedule{
+    display: none;
+    width: 528px;
+    background: white;
+    padding:0 40px;
+}
+.upload-source .title,.schedule .title,.upload-enclosure .title,
+.setPermissions .title{
+    height: 68px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 17px;
+}
+.form-label{
+    line-height: 52px;
+    width: 100%;
+    height: 42px;
+    display: block;
+    color: #646464;
+}
+.form-control{
+    height: 34px;
+    width: 448px;
+    border:1px solid #EAECEE;
+    position: relative;
+}
+.form-control input.time{
+    height: 100%;
+    width: 100%;
+}
+.form-control .time-icon{
+    position: absolute;
+    width: 30px;
+    height: 34px;
+    top:0;
+    right: 0;
+    background: url("../../assets/images/icon.png") no-repeat -686px -249px;
+}
+.form-select{
+    height: 32px;
+    width: 100%;
+    border:none;
+}
+.help-block{
+    font-size: 13px;
+    clear: both;
+    color: #ee6a6a;
+    margin-top: 7px;
+    height: 19px;
+}
+.required{
+    color:#EF5F5F;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.upload-source .close,.schedule .close,.upload-enclosure .close,
+.setPermissions .close{
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 15px;
+    height: 15px;
+    background: url("../../assets/images/icon.png") -89px -467px;
+    cursor: pointer;
+    transition: all 300ms linear;
+}
+.upload-source .close:hover,.schedule .close:hover,.upload-enclosure .close:hover,
+.setPermissions .close:hover{
+    /*transform: rotate(180deg);*/
+    background: url("../../assets/images/icon.png") -89px -437px;
+}
+#videos-upload .form-control{
+    height: auto;
+}
+/*进度条*/
+#loading{
+    z-index: 1002!important;
+}
+.load{
+    position: relative;
+    width: 124px;
+    height: 23px;
+    background: white;
+}
+.load div{
+    width:0;
+    position: absolute;
+    top:0;
+    left: 0;
+    height:23px;
+    /*background:url(../images/edit_loading_bg.png) no-repeat;*/
+    text-align:center;
+    font-size:14px;
+    line-height:23px;
+}
+#loading div.color{
+    z-index: 666;
+    background: #40b1f4;
+}
+#loading div.num{
+    width: 100%;
+    z-index: 9999;
+    margin-right: 0;
+}
+.uploading-info{
+    margin-top: 0!important;
+}
+.uploading-info li{
+    margin-top: 5px;
+}
+
+
+/*上传附件*/
+.upload-enclosure{
+    display: none;
+    background: white;
+    padding: 0 40px;
+}
+#upload-name{
+    width: 100%;
+    height: 100%;
+    padding-left: 8px;
+}
+#teaching-name{
+    height: 100%;
+    width: 100%;
+    padding-left: 5px;
+}
+#means-upload .form-control{
+    height: auto;
+}
+.k-progress{
+    display: none;
+}
+.k-upload-files{
+    max-height: 100px;
+    overflow-y: auto;
+}
+.state{
+    border:1px solid white!important;
+    line-height: 34px;
+}
+.state label{
+    margin-right: 20px;
+}
+/*修改课程*/
+.reviseCourse{
+    display: none;
+}
+
+/*权限设置*/
+.setPermissions{
+    width: 350px;
+    display: none;
+    background: white;
+    padding: 0 40px;
+}
+
+
+/*时间插件*/
+iframe{
+    width: 213px!important;
+}
+
+/*课程任务右侧展示*/
+.course-right{
+    position: fixed;
+    top:0;
+    right: -360px;
+    width: 360px;
+    height: 100%;
+    background: #fff;
+    box-shadow: 1px 0 5px rgba(0,0,0,.1);
+    z-index: 999999;
+}
+.course-right .title{
+    padding-left: 20px;
+    margin-top: 20px;
+    font-size: 15px;
+}
+.chapter-list{
+    color:#646464;
+    /*padding-top: 20px;*/
+}
+.chapter-list-item{
+    line-height: 44px;
+    background: #F4F5F7;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+    /*transition:height ease 1s;*/
+}
+.chapter-list-item>p{
+    padding-left: 53px;
+}
+.chapter-list-item .down,.chapter-list-item .up{
+    position: absolute;
+    width: 30px;
+    height: 44px;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+}
+.chapter-list-item .up{
+    background: url("../../assets/images/icon.png") no-repeat -278px -195px;
+}
+.chapter-list-item .down{
+    background: url("../../assets/images/icon.png") no-repeat -257px -195px;
+}
+.chapter-name{
+    position: relative;
+    cursor: pointer;
+}
+.chapter-name::before{
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 7px;
+    width: 30px;
+    height: 30px;
+    background: url("../../assets/images/icon.png") no-repeat -200px -192px;
+}
+.tast-list{
+    background: white;
+    padding-top: 10px;
+}
+.tast-list li.tast-list-item{
+    position: relative;
+    background: white;
+    overflow: hidden;
+    padding: 0 20px;
+}
+.tast-list li.tast-list-item span{
+    display: inline-block;
+    width: 266px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}
+.tast-list li.tast-list-item:hover{
+    background: #E7F4FC!important;
+}
+.tast-list li.tast-list-item .circle{
+    /*position: absolute;*/
+    display: inline-block;
+    /*left: 18px;*/
+    /*top: 7px;*/
+    width: 30px;
+    height: 22px;
+    background: url("../../assets/images/icon.png") no-repeat -540px -47px;
+}
+.tast-list li.tast-list-item .iconfont{
+    cursor: pointer;
+}
+.tast-list li.tast-list-item .iconfont:hover{
+    color:#40b1f4;
+}
+
+/*设置权限弹框*/
+.to_center{
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+}
+/*.setPermissions{
+    width: 350px;
+}*/
+.setPermissions{
+    width: 456px;
+    font-size: 14px;
+    position: fixed;
+    display: none;
+    background: #FFF;
+    border-radius: 5px;
+    z-index: 2;
+}
+.setPermissions .permissions{
+    margin-top: 20px;
+    text-align: center;
+}
+.setPermissions .invite-save{
+    margin-left: 70px;
+}
+.setPermissions div label{
+    margin-right: 20px;
+}
+.setPermissions div label:last-child{
+    margin-right: 0;
+}
+.tree-node{
+    display: none;
+}
+
+.source-img{
+    position: relative;
+}
+.live-mask{
+    width: 248px;
+    height: 139px;
+    position: absolute;
+    top:0;
+    left: 0;
+    background: rgba(0,0,0,.6);
+    line-height: 139px;
+    text-align: center;
+    color: #40b1f4;
+    font-size: 16px;
+}
+
+.w1200.row{
+    overflow: inherit;
+}
+
+/*课程操作*/
+.course-operate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0 16px 0;
+    overflow: hidden;
+}
+.course-operate a {
+    cursor: pointer;
+}
+.course-operate span {
+    padding: 0 5px 0 3px;
+    font-size: 12px;
+    color: #999;
+}
+.course-delete {
+    padding-left: 12px;
+}
+.course-delete:hover {
+    color: #FF6B6B;
+}
+.course-manage:hover {
+    color: #3A9BFE;
+}
+.course-operate li .msg-label {
+    width: 14px;
+    height: 10px;
+    cursor: pointer;
+}
+.my-right-new {
+    float: right !important;
+    width: 914px !important;
+}

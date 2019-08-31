@@ -1,0 +1,65 @@
+/*头部*/
+header{
+    height: 60px;
+    line-height: 60px;
+    width: 100%;
+    background: #2395ED;
+}
+.head{
+    width: 1208px;
+    margin: 0 auto;
+    height: 60px;
+}
+.head .tools{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 17px;
+}
+.head .tools li{
+    position: relative;
+}
+.head .tools li.noClick,.head .tools li.noClick>a{
+    cursor: text;
+}
+.head .tools li>a{
+    color: white;
+    height: 100%;
+    display: inline-block;
+}
+.head .tools li>a:hover{
+    opacity: .8;
+}
+.head .tools li div.tools-link{
+    text-align: center;
+}
+.head .tools li div.tools-link a{
+    display: block;
+}
+.head .tools li div.tools-link a:hover{
+    background: #40b1f4;
+    color:white;
+}
+.header-logo{
+    height: 40px;
+}
+.headMenu > li{
+    float: left;
+    color: white;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.headMenu i{
+    display: inline-block;
+    vertical-align: middle;
+}
+.my-study a,.home a,.studio a,.private a, .mobile-s{
+    color:white;
+}
+.user-portrait img {
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+}
+.btn {
+    background: blue;
+}

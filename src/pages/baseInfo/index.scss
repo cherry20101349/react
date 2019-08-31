@@ -1,0 +1,99 @@
+.my-right {
+    width: 914px;
+    background: white;
+    min-height: 679px;
+}
+.my-right .title:first-of-type {
+    font-size: 16px;
+    padding: 20px;
+    border-bottom: 1px solid #eaecee;
+}
+.setting-main {
+    padding: 0 60px 50px 60px;
+    text-align: center;
+    color: #646464;
+}
+.setting-group li {
+    text-align: left;
+    padding-top: 30px;
+    position: relative;
+}
+.setting-group-item label {
+    display: inline-block;
+    width: 112px;
+    text-align: right;
+    margin-right: 15px;
+}
+.setting-group-item input ,.setting-group-item select{
+    width: 262px;
+    border: 1px solid #DDDDDD;
+    height: 38px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+.setting-group-item textarea{
+    width: 400px;
+    height: 120px;
+    border: 1px solid #DDDDDD;
+    padding: 10px;
+    vertical-align: text-top;
+}
+.add-pic {
+    width: 250px;
+    height: 140px;
+    position: relative;
+    display: inline-block;
+    vertical-align: text-top;
+}
+.add-pic .img {
+    width: 250px;
+    height: 140px;
+    display: inline-block;
+}
+.add-pic .file {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.save {
+    width: 100px;
+    height: 38px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 40px;
+    background: #40b1f4;
+    border: 1px solid #40b1f4;
+    color: #fff;
+}
+.white{
+    color: white;
+}
+/*操作提示*/
+.tips-wrapper{
+    display: inline-block;
+}
+.tips-wrapper:hover .setting-tips{
+    display: inline-block
+}
+.setting-tips {
+    position: absolute;
+    display: none;
+    padding: 6px 10px;
+    line-height: 20px;
+    vertical-align: top;
+    background: #F9FCFF;
+    color: #929CAB;
+    border: 1px solid #DCE7F6;
+    border-radius: 6px;
+}
+.setting-icon {
+    margin: 0 8px;
+    cursor: pointer;
+}
+.red {
+    color: red;
+}

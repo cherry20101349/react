@@ -1,0 +1,96 @@
+.w1200 {
+    width: 1208px;
+    margin: 0 auto;
+}
+.edit-main{
+    padding: 30px 60px 50px 60px;
+}
+.chapter-list-item {
+    line-height: 44px;
+    background: #F4F5F7;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.chapter-name {
+    padding-left: 53px;
+    position: relative;
+    cursor: pointer;
+    height: 44px;
+    line-height: 44px;
+}
+.chapter-name::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 7px;
+    width: 30px;
+    height: 30px;
+    background: url("../../assets/images/icon.png") no-repeat -200px -192px;
+}
+.chapter-list-item .up {
+    background: url("../../assets/images/icon.png") no-repeat -278px -187px;
+}
+.chapter-list-item .down {
+    background: url("../../assets/images/icon.png") no-repeat -257px -186px;
+}
+.chapter-list-item .down, .chapter-list-item .up {
+    position: absolute;
+    width: 30px;
+    height: 44px;
+    top: 0;
+    right: 8px;
+    cursor: pointer;
+}
+.tast-list li.tast-list-item {
+    position: relative;
+    background: white;
+    overflow: hidden;
+}
+// .item-info{
+    // padding: 0 20px;
+// }
+.tast-list li.tast-list-item:hover .item-info{
+    background: #E7F4FC!important;
+}
+.tast-list-item .circle {
+     position: absolute;
+    left: 18px;
+    top: 7px;
+    width: 30px;
+    height: 22px;
+    background: url("../../assets/images/icon.png") no-repeat -540px -47px;
+}
+.tast-list-item .task-name{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 34px;
+}
+.tast-list-item .icon-btn {
+    font-style: normal;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    font-size: 12px;
+    border: 1px solid #E0E4E7;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.tast-list-item .icon-btn:hover{
+    background: #40b1f4;
+    color: #ffffff;
+    border: 1px solid #40b1f4;
+}
+
+/*练习/作业列表样式*/
+.practice-item{
+    padding:0 54px;
+    cursor: pointer;
+}
+.practice-item:hover{
+    color:#40b1f4;
+}

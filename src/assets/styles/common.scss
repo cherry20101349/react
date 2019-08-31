@@ -1,0 +1,620 @@
+.close-prompt{
+    position: absolute;
+    top: 22px;
+    right: 14px;
+    width: 15px;
+    height: 15px;
+    // background: url("../images/icon.png") -89px -467px;
+    cursor: pointer;
+    transition: all 300ms linear;
+}
+// .close-prompt:hover{
+    // background: url("../images/icon.png") -89px -437px;
+// }
+
+// 遮罩
+.modal-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: rgba(0,0,0,.2);
+    -webkit-perspective: 1300px;
+    -moz-perspective: 1300px;
+    perspective: 1300px;
+}
+.center{
+    position: fixed;
+    display: block!important;
+    /*display: table!important;*/
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /*top: 0;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
+    /*margin: auto;*/
+}
+.videoList li.resource:hover img{
+    transform: scale(1.2);
+}
+.videoList p{
+    font-size: 14px;
+    padding: 7px 10px;
+    line-height: 21px;
+    height: 52px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.videoList .resource a.item-img{
+    width: 100%;
+    height: 124px;
+    display: block;
+    overflow: hidden;
+}
+.videoList img{
+    transition: transform 1s ease 0s;
+    width: 220px;
+    height: 124px;
+    display: inline-block;
+}
+.videoList .resourceInfo{
+    padding: 2px 10px 5px 10px;
+    font-size: 12px;
+    color: #A1A1A1;
+    overflow: hidden;
+}
+.videoList .resourceInfo span:last-of-type{
+    display: inline-block;
+    max-width: 107px;
+    height: 14px;
+    line-height: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/*热门及预告*/
+.resource .hot,.resource .trailer{
+    background: #EF534E;
+}
+/*直播及名师*/
+.resource .live,.resource .teacher{
+    background: #3EBD8A;
+}
+/*优课及精品*/
+.resource .video,.resource .boutique{
+    background: #2299E1;
+}
+/*冒泡*/
+.not_edit{
+    padding: 19px 40px;
+    color: white;
+    text-align: center;
+    background: rgba(0,0,0,.7);
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 9999;
+    font-size: 12px;
+}
+
+/*溢出隐藏*/
+.overflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*视频相关css*/
+.videoList{
+    overflow: hidden;
+}
+.videoList .resource{
+    width: 220px;
+    background: white;
+    margin-right: 24px;
+    float: left;
+    position: relative;
+}
+.showLeft, .showRight {
+    position: absolute;
+    top: 0;
+    padding:3px 5px;
+    font-style: normal;
+    color:white;
+    z-index: 66;
+}
+.showLeft{
+    left: 0;
+}
+.showRight{
+    right: 0;
+}
+.resource .mark{
+    background: palevioletred;
+}
+/*热门及预告*/
+.resource .hot,.resource .trailer{
+    background: #EF534E;
+}
+/*直播及名师*/
+.resource .live,.resource .teacher{
+    background: #3EBD8A;
+}
+/*优课及精品*/
+.resource .video,.resource .boutique{
+    background: #2299E1;
+}
+/*评优中*/
+.excellent{
+    background: orange;
+}
+/*教学空间优课专用*/
+.boutique{
+    background: #2299E1;
+}
+
+.videoList li.resource:hover img{
+    transform: scale(1.2);
+}
+.videoList p{
+    font-size: 14px;
+    padding: 7px 10px;
+    line-height: 21px;
+    height: 52px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.videoList .resource a.item-img{
+    width: 100%;
+    height: 124px;
+    display: block;
+    overflow: hidden;
+}
+.videoList img{
+    transition: transform 1s ease 0s;
+    width: 220px;
+    height: 124px;
+    display: inline-block;
+}
+.videoList .resourceInfo{
+    padding: 2px 10px 5px 10px;
+    font-size: 12px;
+    color: #A1A1A1;
+    overflow: hidden;
+}
+.videoList .resourceInfo span:last-of-type{
+    display: inline-block;
+    max-width: 107px;
+    height: 14px;
+    line-height: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.num i,.play i{
+    display: inline-block;
+    width: 19px;
+    height: 16px;
+    vertical-align: middle;
+}
+// .num i{
+//     // background: url("../images/icon.png") no-repeat -248px -361px;
+// }
+.play i{
+    background: url("../../assets/images/icon.png") no-repeat -298px -361px;
+}
+.num{
+    margin-right: 6px;
+}
+select {
+    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+    border: 1px solid #E4E4E5;
+    /*很关键：将默认的select选择框样式清除*/
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    /*在选择框的最右侧中间显示小箭头图片*/
+    /*background: url(../images/down.png) no-repeat scroll right center transparent;*/
+    /*background: url("../../../images/icon.png") no-repeat -257px -195px;*/
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 22px;
+    height: 23px;
+    position: relative;
+}
+.mask{
+    display: none;
+    background: #000;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+}
+.select::before{
+    content: "";
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    right: 0;
+    top:2px;
+    // background: url("../images/icon.png") no-repeat -257px -195px;
+    z-index: 9999;
+}
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+option:checked, option:hover{
+    background:#BAC1C6;
+}
+
+
+.uploading-info{
+    margin-top: 20px;
+}
+
+button{
+    cursor: pointer;
+    text-align: center;
+    border-radius: 2px;
+    border:none;
+}
+
+.required {
+    color: #ee6a6a;
+    margin-left: 5px;
+    vertical-align: sub;
+}
+
+.disbledElement {
+    color: #EAECEE;
+    cursor: not-allowed!important;
+}
+
+/*评论样式*/
+// .comment{
+
+// }
+.detail-comment{
+    margin-top: 32px;
+}
+.evaluate-area {
+    height: 119px;
+    border: 1px solid #EAECEE;
+    padding: 5px;
+}
+.send-box {
+    overflow: hidden;
+    margin: 20px 0 18px 0;
+    line-height: 22px;
+    color:#999999;
+}
+.send-box button{
+    margin-left: 40px;
+}
+.send-box button, .reply-import button{
+    width: 70px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    background: #40b1f4;
+    color: white;
+}
+.evaluate-item {
+    position: relative;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+.evaluate-left {
+    float: left;
+}
+.evaluate-left img {
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+}
+.evaluate-body {
+    margin-left: 55px;
+}
+.evaluate-item .metas {
+    color: #919191;
+    height: 40px;
+    line-height: 40px;
+}
+.evaluate-item .metas > .name {
+    transition: all .3s ease;
+    margin-right: 10px;
+}
+.evaluate-item .metas > span {
+    margin: 0 5px;
+}
+.eva-content, .reply-content {
+    margin-bottom: 5PX;
+    max-height: 90px;
+    overflow: hidden;
+    line-height: 30px;
+    background: white;
+}
+.reply-icon:hover {
+    color: #40b1f4;
+}
+.reply-icon {
+    cursor: pointer;
+}
+/*二级评论*/
+.reply-container {
+    padding: 10px 53px;
+    display: none;
+}
+.reply-import .reply-area {
+    width: 774px;
+    /*height: 90px;*/
+    height: 119px;
+    border: 1px solid #EAECEE;
+    padding: 5px;
+    overflow-y: auto;
+}
+.send-box {
+    overflow: hidden;
+    margin-top: 18px;
+}
+
+/*提示框2.0*/
+.prompt-close-container {
+    /*height: 56px;*/
+    height: 55px;
+    vertical-align: middle;
+}
+.prompt2-title {
+    font-size: 18px;
+}
+.prompt2-img {
+    margin: 46px 0 24px;
+}
+.prompt2-content {
+    line-height: 1.4;
+    font-size: 14px;
+    color: #323232;
+}
+.prompt2 {
+    text-align: center;
+}
+.control-prompt2 {
+    margin: 64px 0 48px;
+}
+.ensure-prompt2 {
+    width: 180px;
+    height: 36px;
+    font-size: 14px;
+    background: #40B1F4;
+    color: #fff;
+    border-radius: 3px;
+    outline: none;
+}
+.close-prompt2 {
+    width: 60px;
+    height: 60px;
+    margin: 46px 0 24px;
+}
+
+/*隐藏*/
+.hide {
+    display: none !important;
+}
+
+
+/*居中*/
+.align-center {
+    text-align: center;
+}
+.light{
+    opacity: 1!important;
+}
+// .logo{
+    /*background: url("icon.png") no-repeat 10px 10px;*/
+    /*width: 100px;*/
+    /*height: 40px;*/
+    /*display: inline-block;*/
+// }
+.videoList{
+    overflow: hidden;
+    width: 100%;
+}
+.resource{
+    width: 220px;
+    background: white;
+    margin-right: 25px;
+    float: left;
+    margin-bottom: 38px;
+}
+.resource:nth-of-type(5n){
+    margin-right: 0!important;
+}
+
+.no-resource{
+    text-align: center;
+    margin-top: 100px;
+}
+.no-resource img{
+    width: 248px!important;
+}
+
+
+
+
+
+/*磨课中心*/
+.resource .grind-center .course-name{
+    height: 54px;
+    line-height: 54px;
+    padding: 0 5px 0 10px;
+    width: 185px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.course-name a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    line-height: 54px;
+}
+.course-name:hover a{
+    color:#40b1f4;
+}
+.operate {
+    height: 54px;
+    width: 35px;
+    cursor: pointer;
+    position: relative;
+}
+.operate i{
+    display: inline-block;
+    width: 35px;
+    height: 54px;
+    // background: url("../../images/icon.png") no-repeat -30px -517px;
+}
+.operate:hover a{
+    display: block;
+}
+.operate a{
+    display: none;
+    position: absolute;
+    top: -28px;
+    left: -43px;
+    width: 118px;
+    height: 40px;
+    background: white;
+    border: 1px solid #DCDCDC;
+    line-height: 40px;
+    text-align: center;
+    z-index: 99;
+    border-radius: 4px;
+}
+.operate a:before {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 50px;
+    width: 12px;
+    height: 12px;
+    border-right: 1px solid #DCDCDC;
+    border-bottom: 1px solid #DCDCDC;
+    border-left: 1px solid transparent;
+    border-top: 1px solid transparent;
+    transform: rotate(45deg);
+    z-index: 111;
+    background: white;
+}
+.operate a:hover{
+    color:#40b1f4;
+}
+
+
+/*优课评选*/
+.resource .optimal-class .course-name{
+    height: 54px;
+    line-height: 54px;
+    padding: 0 10px;
+    width: 220px;
+}
+.optimal-class .apply-state{
+    /*display: none;*/
+    height: 40px;
+    text-align: center;
+}
+.optimal-class .apply-state button{
+    height: 25px;
+    width: 60px;
+}
+.optimal-class .apply-state button.agree{
+    margin-right: 10px;
+    background: #40b1f4;
+    color:#fff;
+}
+.optimal-class .apply-state button.refuse{
+    background: white;
+    border:1px solid #E0E4E7;
+    height: 27px;
+    color: #9d9d9e;
+}
+
+
+
+/*输入登录密码弹框*/
+.enter-psd{
+    display: none;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+}
+.enter-psd .title{
+    height: 49px;
+    line-height: 49px;
+    font-size: 17px;
+    padding-left: 20px;
+    position: relative;
+    width: 500px;
+}
+.enter-psd .title .close{
+    position: absolute;
+    top: 18px;
+    right: 14px;
+    width: 15px;
+    height: 15px;
+    // background: url("../../images/icon.png") -89px -467px;
+    cursor: pointer;
+    transition: all 300ms linear;
+}
+// .enter-psd .title .close:hover{
+    /*transform: rotate(180deg);*/
+    // background: url("../../images/icon.png") -89px -437px;
+// }
+.enter-psd .psd-set{
+    overflow: hidden;
+    border-top:1px solid #eaecee;
+    padding: 40px 30px 0 34px;
+}
+.psd-set input{
+    height: 30px;
+    width: 224px;
+    border:1px solid #eaecee;
+    margin-left: 20px;
+    padding-left: 10px;
+}
+.psd-set .required{
+    color:#EF5F5F;
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-left: 0;
+}.save-cancel{
+     height: 120px;
+     text-align: center;
+ }
+.save-cancel button{
+    width: 100px;
+    height: 38px;
+    border-radius: 2px;
+    cursor: pointer;
+    border:none;
+    margin-top: 40px;
+}
+.save-cancel button.cancel{
+    margin-right: 20px;
+    background: #fff;
+    border: 1px solid #e0e2e4;
+    color: #7f7f80;
+}
+.save-cancel button.save{
+    background: #40b1f4;
+    border: 1px solid #40b1f4;
+    color: #fff;
+}
+
+
+
