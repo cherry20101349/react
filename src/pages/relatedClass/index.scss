@@ -285,17 +285,25 @@ table {
 .classList div:last-of-type p{
     margin-left: 90px;
 }
-.selectTeacherTitle,.addContent h4,.setPermissions h4,.selectClassroom h4,.showData h4,.target-dept h4{
+
+// 新增班级
+.addClassInfo {
+    width: 528px;
+    background: white;
+    padding: 0 40px;
+    .title{
+        height: 68px;
+        line-height: 80px;
+        text-align: center;
+        font-size: 17px;
+    }
+}
+.addContent h4,.setPermissions h4,.selectClassroom h4,.showData h4,.target-dept h4{
     text-align: center;
     border-bottom: 1px solid #d7d7d7;
     font: bold 14px/40px arial,sans-serif;
     text-align: left;
     padding-left: 14px;
-}
-.addClassInfo {
-    width: 370px !important;
-    padding-bottom: 5px;
-    border-radius: 5px;
 }
 .addClassInfo span,.addResearchInfo span{
     font-weight: bold;
@@ -305,14 +313,12 @@ table {
     text-align: right;
     margin-right: 10px;
 }
-.addClassInfo,.addResearchInfo{
+.addResearchInfo{
     display: none;
     width: 370px;
     padding-bottom: 5px;
 }
-.addClassInfo div,.addResearchInfo div{
-    margin-top: 18px;
-}
+
 .addClassInfo span,.addResearchInfo span{
     font-weight: bold;
     width: 103px;
@@ -325,19 +331,7 @@ table {
     width: 18px;
     margin-top: 1px;
 }
-.addClassInfo input[type=text],.addClassInfo textarea,.addResearchInfo input[type=text],.addResearchInfo textarea{
-    width: 200px;
-    height: 23px;
-}
-.addClassInfo textarea,.addResearchInfo textarea{
-    height: 80px;
-    resize: none;
-}
-.addClassInfo select,.addResearchInfo select{
-    width: 206px;
-    height: 25px;
-    padding-left: 5px;
-}
+
 .confirmCancel{
     text-align: center;
     height: 47px;
@@ -352,6 +346,9 @@ table {
     cursor: pointer;
     background: #146EB9;
     color: white;
+}
+.confirmCancel button:first-of-type{
+    margin-right: 5px;
 }
 input, textarea {
     border: 1px solid #d9d7d7;

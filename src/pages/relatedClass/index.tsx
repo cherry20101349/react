@@ -2,11 +2,10 @@ import * as React from 'react';
 import * as queryString from 'query-string';
 import { Link, Redirect} from "react-router-dom";
 import { message } from 'antd'
-// import 'antd/dist/antd.css';
 import Header from '../../components/header/index';
 import Footer from '../../components/footer/index';
 import './index.scss';
-// import '../../assets/styles/common.scss'
+import '../../assets/styles/courseCom.scss'
 import { axios, API } from '../../assets/utils/index';
 import CreateCourseLeft from 'components/createCourseLeft';
 import CreateCourseHeader from 'components/createCourseHeader';
@@ -139,6 +138,13 @@ export default class App extends React.Component {
             isShowAddClass: true,
             isShowRelatedClass: false
         })
+    }
+
+    /**
+     * 提交（添加班级）
+     */
+    submitAddClass = () => {
+
     }
 
     /**
@@ -278,6 +284,50 @@ export default class App extends React.Component {
                     </div>
                 </div>
                 : ""
+                }
+                {
+                    this.state.isShowAddClass ?
+                    // <!--新增班級-->
+                    <div className="modal-mask">
+                    <div className="addClassInfo to_center">
+                        {/* <form method="post" action="${ctx}/studio/groupManage/addClassGroup" id="js_class_add"> */}
+                        <input type="hidden" id="id" name="id" value="0"/>
+                        <h4 className="title">新增班级</h4>
+                        <ul className="form-group">
+                            <li>
+                                <label className="form-label">班级名<b className="required">*</b></label>
+                                <div className="form-control">
+                                    <input id="teamName" type="text" name="teamName"/>
+                                </div>
+                            </li>
+                            <li>
+                                <label className="form-label">学校组织<b className="required">*</b></label>
+                                <div className="form-control select">
+                                    <select className="form-select">
+                                        <option value="3"></option>
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <label className="form-label">录播教室<b className="required">*</b></label>
+                                <div className="form-control select">
+                                    <select className="form-select">
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <label className="form-label">备注<b className="required white">*</b></label>
+                                <div className="form-control textarea">
+                                    <textarea className="form-textarea" placeholder="请输入备注内容" name="remark"></textarea>
+                                </div>
+                            </li>
+                            <li className="save-cancel">
+                                <button className="cancel" onClick={this.closeBombBox.bind(this)}>取消</button>
+                                <button className="save" onClick={this.submitAddClass.bind(this)}>保存</button>
+                            </li>
+                        </ul>
+                        {/* </form> */}
+                    </div></div> : ""
                 }
             </div >
         )
