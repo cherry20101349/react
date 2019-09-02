@@ -101,14 +101,14 @@ export default class App extends React.Component {
      * 导出班级积分
      */
     exportPointC = () => {
-        window.location.href = "/personal/course/exportClsIntegration?courseId=" + search.courseId + '&isEdit=' + search.isEdit;
+        window.location.href = `/personal/course/exportClsIntegration?courseId=${search.courseId}&isEdit=${search.isEdit}`;
     }
 
     /**
      * 导出学生积分
      */
     exportPointS = () => {
-        window.location.href = "/personal/course/exportStuIntegration?courseId=" + search.courseId + '&isEdit=' + search.isEdit;
+        window.location.href = `/personal/course/exportStuIntegration?courseId=${search.courseId}&isEdit=${search.isEdit}`;
     }
 
     /**
@@ -175,7 +175,7 @@ export default class App extends React.Component {
         if(this.state.isRelatedClass){//已关联班级
             if (!Number(search.isEdit)) {
                 localStorage.setItem("activeIndex","2");
-                window.location.href = "/fore/personal/course/toSetClassHour?courseId=" + search.courseId + '&isEdit=' + search.isEdit
+                window.location.href = `/fore/personal/course/toSetClassHour?courseId=${search.courseId}&isEdit=${search.isEdit}`;
             } else {
                 message.error("保存成功")
             }

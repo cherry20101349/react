@@ -8,11 +8,16 @@ import '../../assets/styles/common.scss'
 import './index.scss';
 import { axios, API } from '../../assets/utils/index';
 import { message } from 'antd';
+import { any } from 'prop-types';
 // import Item from 'antd/lib/list/Item';
 interface Props {
 }
 let initialStates = {
     userType: 1,
+    params: {
+        grade: "",
+        subject: ""
+    },
     reqParams: {
         page: 1,
         pagesize: 12,
@@ -83,7 +88,7 @@ export default class App extends React.Component {
     genaratorGrade = (data: any) => {
         if (!data) return
         return data.map((item: any, index: number) => {
-            // return <li key={index} className={`${item.gradeName === this.state.params.grade ? 'active' : ''}`} onClick={(e) => this.getTask({ ...this.state.params, 'grade': item.gradeName })}>{item.gradeDicId === null ? '全部' : item.gradeName}</li>
+            return <li key={index} className={`${item.gradeName === this.state.params.grade ? 'active' : ''}`}>{item.gradeDicId === null ? '全部' : item.gradeName}</li>
         })
     }
 
@@ -93,9 +98,10 @@ export default class App extends React.Component {
     genaratorSubject = (data: any) => {
         if (!data) return
         return data.map((item: any, index: number) => {
-            // return <li key={index} className={`${item.subName === this.state.params.subject ? 'active' : ''}`} onClick={(e) => this.getTask({ ...this.state.params, 'subject': item.subName })}>{item.subDicId === null ? '全部' : item.subName}</li>
+            return <li key={index} className={`${item.subName === this.state.params.subject ? 'active' : ''}`}>{item.subDicId === null ? '全部' : item.subName}</li>
         })
     }
+
     /**
      * 初始化课程
      */
@@ -232,7 +238,7 @@ export default class App extends React.Component {
      * 获取图片封面
      */
     getImgSrc = (picPath: any) => {
-        if(picPath){
+        if(picPath) {
             return '/home/readRescImage?picPath=' + picPath;
         } else {
             return require('../../assets/images/default_figure.jpg');
@@ -306,15 +312,18 @@ export default class App extends React.Component {
             reqParams: data
         })
         this.asyncGetTeaching();
+        console.log(this.state.reqParams)
         // this.changeReqParams("keyword")
     }
 
-    changeReqParams = (str: any) => {
-        let data = this.state.reqParams
-        // data.str = this.state[str]
+    changeReqParams = (str: string) => {
+        let data = Object.assign({}, this.state.reqParams, {
+            keyword: this.state.keyword
+        })
         this.setState({
             reqParams: data
         })
+        console.log(this.state.reqParams)
         this.asyncGetTeaching();
     }
 
@@ -357,15 +366,15 @@ export default class App extends React.Component {
                             <div className="select-wrapper">
                                 <div>
                                     <input type="text" className="select-text" name="keyword" placeholder="搜索关键字" onChange={this.changeValue.bind(this)}/>
-                                    <button className="select-btn" onClick={this.selectCourses.bind(this)}>搜索</button>
-                                    <button className="filler-btn" onClick={this.showGradeSubjectFiller.bind(this)}><i className="iconfont icon-funnel"></i></button>
+                                    <button onClick={this.selectCourses.bind(this)}>搜索</button>
+                                    <button className="filler-btn" onClick={this.showGradeSubjectFiller.bind(this)}><i className="iconfont icon-funnel"></i>筛选</button>
                                 </div>
                                 <ul className={ this.state.isShowGradeSubject ? 'filler-list' : 'filler-list none'}>
                                     <li className="filler-item">
                                         <span>学科：</span>
                                         <ul className="subject-list filter-nav-list">
                                             {
-                                                this.genaratorSubject(this.state.gradeList)
+                                                this.genaratorSubject(this.state.subjectList)
                                             }
                                         </ul>
                                     </li>

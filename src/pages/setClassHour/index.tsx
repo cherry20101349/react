@@ -49,7 +49,7 @@ export default class App extends React.Component {
      */
     modCourse = () => {
         localStorage.setItem("activeIndex","3");
-        window.location.href = '/fore/personal/course/toClasswork?courseId=' + search.courseId + '&isEdit=' + search.isEdit
+        window.location.href = `/fore/personal/course/toClasswork?courseId=${search.courseId}&isEdit=${search.isEdit}`;
     }
 
     /**

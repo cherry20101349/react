@@ -142,7 +142,7 @@ export default class App extends React.Component {
 
     toRelateClass = () => {
         localStorage.setItem("activeIndex","1");
-        window.location.href = '/fore/personal/course/toRelatedClass?courseId=' + search.courseId + '&isEdit=' + search.isEdit
+        window.location.href = `/fore/personal/course/toRelatedClass?courseId=${search.courseId}&isEdit=${search.isEdit}`;
     }
 
     /**
