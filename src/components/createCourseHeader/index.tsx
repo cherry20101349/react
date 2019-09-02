@@ -26,6 +26,7 @@ export default class CreateCourseHeader extends React.Component {
      */
     judgeAddOrEdit = () => {
         if(search.courseName){
+            console.log(search.courseName)
             this.setState({
                 locationInfo:{
                     courseName: search.courseName,

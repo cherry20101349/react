@@ -4,22 +4,24 @@ import Header from '../../components/header/index';
 import Footer from '../../components/footer/index';
 import CreateCourseLeft from 'components/createCourseLeft';
 import CreateCourseHeader from 'components/createCourseHeader';
+import Modal from '../../components/modal/index';
 import Avatar from 'components/uploadImg';
 import './index.scss';
 import { axios, API } from '../../assets/utils/index';
+import { message } from 'antd';
 const search = queryString.parse(window.location.search)
 interface Props {
 }
 let initialStates = {
     params: {
-        rescId:"",
-        courseType:"",
-        teacher:"",
-        rescTitle:"",
-        grade:"",
-        subject:"",
-        vedPic:"",
-        remark:""
+        rescId: search.courseId ? search.courseId : 0,
+        courseType: "",
+        teacher: "",
+        rescTitle: "",
+        grade: "",
+        subject: "",
+        vedPic: "",
+        remark: ""
     },
     reqParams: {
         courseId: search.courseId
@@ -29,7 +31,7 @@ let initialStates = {
 }
 type State = typeof initialStates
 export default class App extends React.Component {
-    state: State = initialStates
+    state: State = initialStates;
     componentWillMount() {
         this.getGrade();
         this.getSubject();
@@ -40,10 +42,11 @@ export default class App extends React.Component {
      */
     judgeAddOrEdit = () => {
         if(!Number(search.isEdit)){
+            let data = Object.assign({}, this.state.params, {
+                rescTitle: search.courseName
+            })
             this.setState({
-                params:{
-                    rescTitle: search.courseName
-                }
+                params: data
             })
         } else {
             this.getCourseInfo();
@@ -71,6 +74,7 @@ export default class App extends React.Component {
      * 获取年级相关
      */
     getGrade = () => {
+        this.state.params.grade = "一年级";//默认设置第一个
         axios.post(API.commons.getGrade, {}).then((res: any) => {
             const { body, head } = res.data
             if (head.retcode === 1 && body.length > 0) {
@@ -85,13 +89,7 @@ export default class App extends React.Component {
      * 获取学科相关
      */
     getSubject = () => {
-        this.setState({
-            params:{
-                rescTitle: "333333",
-                grade: "二年级",
-                subject: "数学"
-            }
-        })
+        this.state.params.subject = "语文";//默认设置第一个
         axios.post(API.commons.getSub).then((res: any) => {
             const { body, head } = res.data
             if (head.retcode === 1 && body.length > 0) {
@@ -121,26 +119,61 @@ export default class App extends React.Component {
     }
 
     /**
+     * 显示公共弹框
+     */
+    showModal = () => {
+        let config = {
+            visible: true, 
+            title: '资源平台', 
+            onOk: () => {
+                this.toRelateClass();
+            },
+            onCancel: () => {   
+                Modal.destory()
+            }, 
+            content: "课程建立成功，请按指引步骤完成课程的设置",  
+            okText: "确定",
+            isCanCel: false, 
+            cancelText: "取消"
+        }
+        let m: Modal = new Modal(config)
+        m.open()
+    }
+
+    toRelateClass = () => {
+        localStorage.setItem("activeIndex","1");
+        window.location.href = '/fore/personal/course/toRelatedClass?courseId=' + search.courseId + '&isEdit=' + search.isEdit
+    }
+
+    /**
      * 保存基本信息
      */
     modCourseBaseInfo = () => {
+        // axios.post(API.commons.getSub).then((res: any) => {
+        //     const { body, head } = res.data
+        //     if (head.retcode === 1 && body.length > 0) {
+              
+        //     }
+        // }, () => {
+
+        // })
         if(!Number(search.isEdit)){
-            console.log("显示前往关联班级提示弹框")
-            localStorage.setItem("activeIndex","1");
+            this.showModal();
         } else {
             localStorage.setItem("activeIndex","3");
+            message.success("编辑成功");
         }
-        window.location.href = '/fore/personal/course/toRelatedClass?courseId=' + search.courseId + '&isEdit=' + search.isEdit
     }
 
     /**
      * 改变value
      */
     changeValue = (event: any) => {
+        let data = Object.assign({}, this.state.params, {
+            [event.target.name]: event.target.value
+        })
         this.setState({
-            params:{
-                [event.target.name]: event.target.value
-            }
+            params: data
         })
     }
 
@@ -201,9 +234,9 @@ export default class App extends React.Component {
                                         <li className="setting-group-item">
                                             <label>缩略图<b className="white">*</b>：</label>
                                             <div className="add-pic">
-                                                <Avatar />
-                                                {/* <img src={require("../../assets/images/default_figure.jpg")} alt="" className="img" id="vedImg"/>
-                                                <input id="vedFile" className="file" name="vedPic" accept=".jpg,.png,.gif,.jpeg" type="file"/> */}
+                                                {/* <Avatar /> */}
+                                                <img src={require("../../assets/images/default_figure.jpg")} alt="" className="img" id="vedImg"/>
+                                                <input className="file" name="vedPic" accept=".jpg,.png,.gif,.jpeg" type="file"/>
                                             </div>
                                         </li>
                                         <li className="setting-group-item">

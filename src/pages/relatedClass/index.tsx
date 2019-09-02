@@ -19,25 +19,15 @@ let initialStates = {
     isShowAddClass: false,//是否显示新增班级弹框
     classList: [
         {
-            className: "lml1班级",
+            className: "",
             integration: 28
-        },
-        {
-            className: "lml1班级2",
-            integration: 12
         }
     ],
     studentList: [
         {
-            nickName: "lml1班级",
-            className: "111",
-            loginName: "111",
-            integration: 28
-        },
-        {
-            nickName: "lml1班级",
-            className: "111",
-            loginName: "111",
+            nickName: "",
+            className: "",
+            loginName: "",
             integration: 28
         }
     ]
@@ -327,7 +317,8 @@ export default class App extends React.Component {
                             </li>
                         </ul>
                         {/* </form> */}
-                    </div></div> : ""
+                    </div>
+                    </div> : ""
                 }
             </div >
         )

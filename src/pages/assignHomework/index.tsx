@@ -32,10 +32,11 @@ export default class App extends React.Component {
      * 改变value
      */
     changeValue = (event: any) => {
+        let data = Object.assign({}, this.state.params, {
+            [event.target.name]: event.target.value
+        })
         this.setState({
-            params:{
-                [event.target.name]: event.target.value
-            }
+            params: data
         })
     }
 

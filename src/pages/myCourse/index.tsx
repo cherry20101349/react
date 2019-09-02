@@ -102,7 +102,7 @@ export default class App extends React.Component {
     genaratorCourse = (data: any) => {
         if (!data || !data.length) return noResource
         return data.map((item: any, index: number) => {
-            return <li className="course-list-item">
+            return <li className="course-list-item" key={index}>
                         <a href={`/fore/course/courseDetail?courseId=${item.courseId}`} className="source-img">
                             <img src={this.getImgSrc(item.picPath)} alt=""/>
                         </a>
@@ -245,6 +245,8 @@ export default class App extends React.Component {
     deleteCourse = () => {
         this.showModal();
     }
+
+
     asyncDeleteCourse = () => {
         Modal.destory()
         // studio/messageCenter/deleteCourse
@@ -327,6 +329,7 @@ export default class App extends React.Component {
 
     saveCourseType = () => {
         localStorage.setItem("activeIndex","-1");
+        window.location.href = `/fore/personal/course/toBaseInfo?courseType=${this.state.courseType}&courseName=${this.state.courseName}&isEdit=0`;
     }
 
     showErrorImg = () => {
@@ -426,7 +429,7 @@ export default class App extends React.Component {
                             </div>
                             <div className="save-cancel">
                                 <button className="cancel" onClick={this.creatCourse.bind(this,1)}>取消</button>
-                                <Link to={`/fore/personal/course/toBaseInfo?courseType=${this.state.courseType}&courseName=${this.state.courseName}&isEdit=0`}><button className="save" onClick={this.saveCourseType.bind(this)}>创建</button></Link>
+                                <button className="save" onClick={this.saveCourseType.bind(this)}>创建</button>
                             </div>
                         </div>
                     </div>
