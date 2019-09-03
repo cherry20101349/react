@@ -3,6 +3,7 @@ import * as queryString from 'query-string';
 import Header from '../../components/header/index';
 import Footer from '../../components/footer/index';
 import TreeView from '../../components/treeView/index';
+import SearchTree from '../../components/treeView/index2';
 import './index.scss';
 import { axios, API } from '../../assets/utils/index';
 const search = queryString.parse(window.location.search)
@@ -142,13 +143,9 @@ export default class App extends React.Component {
                             <div className="group-list l">
                                 <div className="group-top">
                                     <h3 className="list-title">组织列表</h3>
-                                    <div className="group-search">
-                                        <input className="search-text" placeholder="搜索您想查看的内容" type="text"/><i className="search-i"></i>
-                                    </div>
                                 </div>
                                 <div className="tree-list">
-                                    <div id="treeview"></div>
-                                    <TreeView />
+                                    <SearchTree />
                                 </div>
                             </div>
                             <div className="class-r r">

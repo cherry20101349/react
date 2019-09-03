@@ -43,9 +43,10 @@ html a{
 html p{
     margin-bottom: 0
 }
-h1, h2, h3, h4, h5, h6 {
+html h1, html h2, html h3, html h4, html h5, html h6 {
     font-size: 100%;
     font-weight: 400;
+    margin-bottom: 0;
 }
 input,textarea{
     border:0;

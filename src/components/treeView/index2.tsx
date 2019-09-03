@@ -1,133 +1,158 @@
-// import * as React from 'react'
-// import { Tree, Input } from 'antd';
+import * as React from 'react'
+import { Tree, Input } from 'antd';
+import 'antd/dist/antd.css';
+const { TreeNode } = Tree;
+const { Search } = Input;
 
-// const { TreeNode } = Tree;
-// const { Search } = Input;
+const gData = [
+    {
+      name: '好视通大学',
+      nodeId: '0-0',
+      children: [
+        {
+          name: '0-0-0',
+          nodeId: '0-0-0',
+          children: [
+            { name: '0-0-0-0', nodeId: '0-0-0-0' },
+            { name: '0-0-0-1', nodeId: '0-0-0-1' },
+            { name: '0-0-0-2', nodeId: '0-0-0-2' },
+          ],
+        },
+        {
+          name: '0-0-1',
+          nodeId: '0-0-1',
+          children: [
+            { name: '0-0-1-0', nodeId: '0-0-1-0' },
+            { name: '0-0-1-1', nodeId: '0-0-1-1' },
+            { name: '0-0-1-2', nodeId: '0-0-1-2' },
+          ],
+        },
+        {
+          name: '0-0-2',
+          nodeId: '0-0-2',
+        },
+      ],
+    },
+    {
+      name: '0-1',
+      nodeId: '0-1',
+      children: [
+        { name: '0-1-0-0', nodeId: '0-1-0-0' },
+        { name: '0-1-0-1', nodeId: '0-1-0-1' },
+        { name: '0-1-0-2', nodeId: '0-1-0-2' },
+      ],
+    },
+    {
+      name: '0-2',
+      nodeId: '0-2',
+    },
+  ];
 
-// const x = 3;
-// const y = 2;
-// const z = 1;
-// const gData = [];
+const dataList:any = [];
+const generateList = (data:any) => {
+  for (let i = 0; i < data.length; i++) {
+    const node = data[i];
+    const { nodeId } = node;
+    dataList.push({ nodeId, name: nodeId });
+    if (node.children) {
+      generateList(node.children);
+    }
+  }
+};
+generateList(gData);
 
-// const generateData = (_level, _preKey, _tns) => {
-//   const preKey = _preKey || '0';
-//   const tns = _tns || gData;
 
-//   const children = [];
-//   for (let i = 0; i < x; i++) {
-//     const key = `${preKey}-${i}`;
-//     tns.push({ title: key, key });
-//     if (i < y) {
-//       children.push(key);
-//     }
-//   }
-//   if (_level < 0) {
-//     return tns;
-//   }
-//   const level = _level - 1;
-//   children.forEach((key, index) => {
-//     tns[index].children = [];
-//     return generateData(level, key, tns[index].children);
-//   });
-// };
-// generateData(z);
 
-// const dataList = [];
-// const generateList = (data:any) => {
-//   for (let i = 0; i < data.length; i++) {
-//     const node = data[i];
-//     const { key } = node;
-//     dataList.push({ key, title: key });
-//     if (node.children) {
-//       generateList(node.children);
-//     }
-//   }
-// };
-// generateList(gData);
+const getParentKey = (nodeId:any, tree:any):any => {
+  let parentKey;
+  for (let i = 0; i < tree.length; i++) {
+    const node = tree[i];
+    if (node.children) {
+      if (node.children.some((item:any) => item.nodeId === nodeId)) {
+        parentKey = node.nodeId;
+      } else if (getParentKey(nodeId, node.children)) {
+        parentKey = getParentKey(nodeId, node.children);
+      }
+    }
+  }
+  return parentKey;
+};
 
-// const getParentKey = (key, tree) => {
-//   let parentKey;
-//   for (let i = 0; i < tree.length; i++) {
-//     const node = tree[i];
-//     if (node.children) {
-//       if (node.children.some((item:any) => item.key === key)) {
-//         parentKey = node.key;
-//       } else if (getParentKey(key, node.children)) {
-//         parentKey = getParentKey(key, node.children);
-//       }
-//     }
-//   }
-//   return parentKey;
-// };
+export default class SearchTree extends React.Component {
+  state = {
+    expandedKeys: [],
+    searchValue: '',
+    autoExpandParent: true,
+  };
 
-// class SearchTree extends React.Component {
-//   state = {
-//     expandedKeys: [],
-//     searchValue: '',
-//     autoExpandParent: true,
-//   };
+  onExpand = (expandedKeys:any) => {
+    this.setState({
+      expandedKeys,
+      autoExpandParent: false,
+    });
+  };
 
-//   onExpand = (expandedKeys:any) => {
-//     this.setState({
-//       expandedKeys,
-//       autoExpandParent: false,
-//     });
-//   };
+  onChange = (e:any) => {
+    const { value } = e.target;
+    const expandedKeys = dataList
+      .map((item:any) => {
+        if (item.name.indexOf(value) > -1) {
+          return getParentKey(item.nodeId, gData);
+        }
+        return null;
+      })
+      .filter((item:any, i:any, self:any) => item && self.indexOf(item) === i);
+    this.setState({
+      expandedKeys,
+      searchValue: value,
+      autoExpandParent: true,
+    });
+  };
 
-//   onChange = (e:any) => {
-//     const { value } = e.target;
-//     const expandedKeys = dataList
-//       .map(item => {
-//         if (item.title.indexOf(value) > -1) {
-//           return getParentKey(item.key, gData);
-//         }
-//         return null;
-//       })
-//       .filter((item, i, self) => item && self.indexOf(item) === i);
-//     this.setState({
-//       expandedKeys,
-//       searchValue: value,
-//       autoExpandParent: true,
-//     });
-//   };
+  onCheck = (checkedKeys:any) => {
+    console.log('onCheck', checkedKeys);
+    this.setState({ checkedKeys });
+  };
 
-//   render() {
-//     const { searchValue, expandedKeys, autoExpandParent } = this.state;
-//     const loop = (data:any) =>
-//       data.map((item:any) => {
-//         const index = item.title.indexOf(searchValue);
-//         const beforeStr = item.title.substr(0, index);
-//         const afterStr = item.title.substr(index + searchValue.length);
-//         const title =
-//           index > -1 ? (
-//             <span>
-//               {beforeStr}
-//               <span style={{ color: '#f50' }}>{searchValue}</span>
-//               {afterStr}
-//             </span>
-//           ) : (
-//             <span>{item.title}</span>
-//           );
-//         if (item.children) {
-//           return (
-//             <TreeNode key={item.key} title={title}>
-//               {loop(item.children)}
-//             </TreeNode>
-//           );
-//         }
-//         return <TreeNode key={item.key} title={title} />;
-//       });
-//     return (
-//       <div>
-//         <Search style={{ marginBottom: 8 }} placeholder="Search" onChange={this.onChange} />
-//         <Tree
-//           onExpand={this.onExpand}
-//           expandedKeys={expandedKeys}
-//           autoExpandParent={autoExpandParent}
-//         >
-//           {loop(gData)}
-//         </Tree>
-//       </div>
-//     );
-//   }
-// }
+  render() {
+    const { searchValue, expandedKeys, autoExpandParent } = this.state;
+    const loop = (data:any) =>
+      data.map((item:any) => {
+        const index = item.name.indexOf(searchValue);
+        const beforeStr = item.name.substr(0, index);
+        const afterStr = item.name.substr(index + searchValue.length);
+        const name =
+          index > -1 ? (
+            <span>
+              {beforeStr}
+              <span style={{ color: '#f50' }}>{searchValue}</span>
+              {afterStr}
+            </span>
+          ) : (
+            <span>{item.name}</span>
+          );
+        if (item.children) {
+          return (
+            <TreeNode key={item.nodeId} title={name}>
+              {loop(item.children)}
+            </TreeNode>
+          );
+        }
+        return <TreeNode key={item.nodeId} title={name} />;
+      });
+    return (
+      <div>
+        <Search style={{ marginBottom: 8 }} placeholder="Search" onChange={this.onChange} />
+        <Tree
+          checkable
+          onExpand={this.onExpand}
+          expandedKeys={expandedKeys}
+          autoExpandParent={autoExpandParent}
+          onCheck={this.onCheck}
+        >
+          {loop(gData)}
+        </Tree>
+      </div>
+    );
+  }
+}

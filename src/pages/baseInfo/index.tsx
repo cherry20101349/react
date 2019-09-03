@@ -10,8 +10,7 @@ import './index.scss';
 import { axios, API } from '../../assets/utils/index';
 import { message } from 'antd';
 const search = queryString.parse(window.location.search)
-interface Props {
-}
+
 let initialStates = {
     params: {
         rescId: search.courseId ? search.courseId : 0,
@@ -117,7 +116,6 @@ export default class App extends React.Component {
 
         })
     }
-
     /**
      * 显示公共弹框
      */
@@ -128,9 +126,6 @@ export default class App extends React.Component {
             onOk: () => {
                 this.toRelateClass();
             },
-            onCancel: () => {   
-                Modal.destory()
-            }, 
             content: "课程建立成功，请按指引步骤完成课程的设置",  
             okText: "确定",
             isCanCel: false, 
@@ -144,7 +139,6 @@ export default class App extends React.Component {
         localStorage.setItem("activeIndex","1");
         window.location.href = `/fore/personal/course/toRelatedClass?courseId=${search.courseId}&isEdit=${search.isEdit}`;
     }
-
     /**
      * 保存基本信息
      */
@@ -164,7 +158,6 @@ export default class App extends React.Component {
             message.success("编辑成功");
         }
     }
-
     /**
      * 改变value
      */

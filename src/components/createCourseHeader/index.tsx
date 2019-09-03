@@ -1,13 +1,12 @@
 import * as React from 'react'
 import * as queryString from 'query-string';
+import { axios, API } from '../../assets/utils/index';
 import './index.scss'
-import { string } from 'prop-types';
-
 const search = queryString.parse(window.location.search)
 
 let initialStates = {
-    courseName: "",
-    courseType: "",
+    // courseName: "",
+    // courseType: "",
     locationInfo: {
         courseName:"",
         courseType: "",
@@ -26,11 +25,10 @@ export default class CreateCourseHeader extends React.Component {
      */
     judgeAddOrEdit = () => {
         if(search.courseName){
-            console.log(search.courseName)
             this.setState({
                 locationInfo:{
                     courseName: search.courseName,
-                    courseType: this.getCourseType(),
+                    courseType: this.getCourseType(search.courseType),
                     isEdit: search.isEdit,
                     courseId: ""
                 }
@@ -40,29 +38,42 @@ export default class CreateCourseHeader extends React.Component {
         }
     }
 
+    /**
+     * 获取课程信息
+     */
     getCourseInfo = () => {
-        this.setState({
-            locationInfo:{
-                courseName: "",
-                courseType: "",
-                isEdit: search.isEdit,
-                courseId: ""
+        axios.post(API.commons.getGrade, {}).then((res: any) => {
+            const { body, head } = res.data
+            if (head.retcode === 1 && body.length > 0) {
+                this.setState({
+                    locationInfo:{
+                        courseName: "",
+                        courseType: "",
+                        isEdit: search.isEdit,
+                        courseId: ""
+                    }
+                })
             }
+        }, () => {
         })
     }
 
-    getCourseType = ():any => {
-        let courseType = search.courseType
-        if(courseType === "0") {
+    /**
+     * 获取课程类型
+     */
+    getCourseType = (courseType: any): string => {
+        if(courseType === "0" || courseType === "COURSE_COMMON") {
             return "普通课程"
-        } else if (courseType === "1") {
+        } else if (courseType === "1" || courseType === "COURSE_MICRO") {
             return "微课课程"
-        } else if (courseType === "2") {
+        } else if (courseType === "2" || courseType === "COURSE_DELIVERY") {
             return "专递课程"
-        } else if (courseType === "3") {
+        } else if (courseType === "3" || courseType === "COURSE_INTERACT") {
             return "互动课程"
-        } 
-    }
+        } else {
+            return "普通课程"
+        }
+    } 
 
 
     render() {
