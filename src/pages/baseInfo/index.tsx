@@ -10,6 +10,7 @@ import './index.scss';
 import { axios, API } from '../../assets/utils/index';
 import { message } from 'antd';
 const search = queryString.parse(window.location.search)
+console.log(search.isEdit)
 
 let initialStates = {
     params: {

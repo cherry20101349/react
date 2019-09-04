@@ -109,11 +109,11 @@ export default class App extends React.Component {
         if (!data || !data.length) return noResource
         return data.map((item: any, index: number) => {
             return <li className="course-list-item" key={index}>
-                        <a href={`/fore/course/courseDetail?courseId=${item.courseId}`} className="source-img">
+                        <Link to={`/fore/course/courseDetail?courseId=${item.courseId}`} className="source-img">
                             <img src={this.getImgSrc(item.picPath)} alt=""/>
-                        </a>
+                        </Link>
                         <div className="course-info">
-                            <a href={`/fore/course/courseDetail?courseId=${item.courseId}`} title={item.rescTitle} className="course-name">{item.rescTitle}</a> 
+                            <Link to={`/fore/course/courseDetail?courseId=${item.courseId}`} title={item.rescTitle} className="course-name">{item.rescTitle}</Link> 
                             <ul className="course-operate">
                                 <li>
                                     <img src={require("../../assets/images/play.png")} alt="播放次数" title="播放次数" className="msg-label"/>

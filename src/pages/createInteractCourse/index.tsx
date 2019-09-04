@@ -2,8 +2,7 @@ import * as React from 'react';
 import * as queryString from 'query-string';
 import Header from '../../components/header/index';
 import Footer from '../../components/footer/index';
-import TreeView from '../../components/treeView/index';
-import SearchTree from '../../components/treeView/index2';
+import SearchTree from '../../components/treeSelect/searchTree';
 import './index.scss';
 import { axios, API } from '../../assets/utils/index';
 const search = queryString.parse(window.location.search)
@@ -11,7 +10,21 @@ interface Props {
 }
 let initialStates = {
     currentStep: 1,//当前步骤
+    associatedUsers: [//关联用户
+        {
+            "nickName": "Cherry",
+            "deptName": "好视通",
+            "userRight": null,
+        },
+        {
+            "nickName": "Cherry",
+            "deptName": "好视通",
+            "userRight": null,
+        }
+    ],
     params: {
+        id: "",
+        treeType: "",
         interactName: "",
         appointStartTime: "",
         appointEndTime: "",
@@ -24,7 +37,69 @@ type State = typeof initialStates
 export default class App extends React.Component {
     state: State = initialStates
     componentWillMount() {
-     
+        this.asysGetsetManageInfo();
+    }
+    /**
+     * 初始化互动用户
+     */
+    genaratorUsers = (data: any) => {
+        if (!data) return
+        return data.map((item: any, index: number) => {
+            return <li className="class-list-item">
+                <h3 title={item.nickName}>{item.nickName}({item.deptName})</h3>
+                <p><span>机构：</span><span>{item.deptName === null ? data.sysDept.deptName : data.deptName}</span></p>
+                <p><span className="interact-name-label">名称：</span><span className="overflow interact-name">课时4</span></p>
+                <p><span>开始时间：</span><span className="showStartTime">2019-09-04 18:11:00</span></p>
+                <p><span>结束时间：</span><span className="showEndTime">2019-09-04 23:11:00</span></p>
+                <p><span>授权：</span><span className="grant">听讲</span></p>
+                <button className="table-btn" onClick={this.settingMain.bind(this)}>设置主讲老师</button>
+            </li>
+        })
+    }
+
+    /**
+     * 设置主讲
+     */
+    settingMain = () => {
+
+    }
+
+    /**
+     * 获取关联的设备(关联互动用户需展示)
+     */
+    asysGetsetManageInfo = () => {
+        // axios.post(API.commons.getGrade, {}).then((res: any) => {
+        //     const { body, head } = res.data
+        //     if (head.retcode === 1 && body.length > 0) {
+        //         this.setState({
+        //             associatedUsers: body
+        //         })
+        //     }
+        // }, () => {
+        // })
+
+    }
+    /**
+     * 关联互动用户
+     */
+    selectInteractUser(arr:any) {
+        console.log(arr)
+        // getCurrNodeInteractData
+        const {id, treeType} = this.state.params;
+        const params = {
+            "id": id,
+            "treeType": treeType
+        }
+        axios.post(API.commons.getGrade, params).then((res: any) => {
+            const { body, head } = res.data
+            if (head.retcode === 1 && body.length > 0) {
+                this.setState({
+                    associatedUsers: body
+                })
+            }
+        }, () => {
+        })
+
     }
 
     /**
@@ -62,6 +137,10 @@ export default class App extends React.Component {
     }
 
     showErrorImg = () => {
+
+    }
+
+    fn = (val:any) => {
 
     }
 
@@ -145,11 +224,12 @@ export default class App extends React.Component {
                                     <h3 className="list-title">组织列表</h3>
                                 </div>
                                 <div className="tree-list">
-                                    <SearchTree />
+                                    <SearchTree selectInteractUser={this.selectInteractUser.bind(this)}/>
                                 </div>
                             </div>
                             <div className="class-r r">
                                 <ul className="class-list">
+                                    {this.genaratorUsers(this.state.associatedUsers)}
                                 </ul>
                                 <div className="operate">
                                     <button className="prev" id="two-prev" type="button" onClick={this.showStep.bind(this,1)} >上一步</button>

@@ -9,6 +9,7 @@ import '../../assets/styles/courseCom.scss'
 import { axios, API } from '../../assets/utils/index';
 import CreateCourseLeft from 'components/createCourseLeft';
 import CreateCourseHeader from 'components/createCourseHeader';
+import TransferTree from '../../components/treeSelect/index';
 const search = queryString.parse(window.location.search)
 interface Props {
 }
@@ -266,7 +267,9 @@ export default class App extends React.Component {
                     <div className="selectClass center">
                         <h4 className="prompt-tit prompt-tit1">关联班级<em className="close" onClick={this.closeBombBox.bind(this)}></em></h4>
                         <p className="add-class">若下拉列表中无对应的班级，请点击<a href="javascript:" onClick={this.addClass.bind(this)}>新增班级</a></p>
-                        <div id="treeview" className="treeview"></div>
+                        <div id="treeview" className="treeview">
+                            <TransferTree />
+                        </div>
                         <div className="save-cancel save-cancel1">
                             <button className="cancel" onClick={this.closeBombBox.bind(this)}>取消</button>
                             <button className="save" id="saveClass">确定</button>

@@ -239,7 +239,7 @@
     z-index: 2000;
     background-color: rgba(0,0,0,.2);
 }
-.set-task{
+.create-task{
     position: fixed;
     top:50%;
     left: 50%;
@@ -247,7 +247,7 @@
     background: white;
     padding: 0 40px;
 }
-.set-task .title{
+.create-task .title{
     height: 68px;
     line-height: 80px;
     text-align: center;
@@ -343,7 +343,7 @@
     margin: 0 200px;
 }
 
-.set-task .closeHomeworkSetting{
+.create-task .closeHomeworkSetting{
     position: absolute;
     top: 14px;
     right: 14px;
@@ -353,7 +353,7 @@
     cursor: pointer;
     transition: all 300ms linear;
 }
-.set-task .closeHomeworkSetting:hover{
+.create-task .closeHomeworkSetting:hover{
     background: url("../../assets/images/icon.png") -89px -437px;
 }
 

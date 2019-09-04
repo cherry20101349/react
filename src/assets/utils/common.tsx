@@ -704,6 +704,7 @@ export function setCourseType(course?: any) {
  * @param y 
  */
 export function equals (x: any, y: any) {
+    console.log(1)
     let typeX = x instanceof Object;
     let typeY = y instanceof Object;
     if (!typeY || !typeX) {
@@ -731,12 +732,12 @@ export function equals (x: any, y: any) {
  * 前端验证所有名称
  * @param str 
  */
-export function checkAllName (str: string){
-    if(!str){
+export function checkAllName (str: string) {
+    if(!str) {
         message.error("请输入名称");
         return true;
     }
-    if(str.length <= 1 || str.length > 32){
+    if(str.length <= 1 || str.length > 32) {
         message.error("名字长度为2到32个字符");  
         return true;
     }
@@ -747,7 +748,7 @@ export function checkAllName (str: string){
  * 获取课程类型
  * @param str 
  */
-export function getCourseType (str: string){
+export function getCourseType (str: string) {
     switch (str) {
         case 'COURSE_COMMON':
             return "普通课程";
