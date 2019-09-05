@@ -5,6 +5,7 @@ import Footer from '../../components/footer/index';
 import SearchTree from '../../components/treeSelect/searchTree';
 import './index.scss';
 import { axios, API } from '../../assets/utils/index';
+import { DatePicker } from 'antd';
 const search = queryString.parse(window.location.search)
 interface Props {
 }
@@ -31,7 +32,8 @@ let initialStates = {
         grade: "",
         subject: "",
         remark: ""
-    }
+    },
+    nodeId: ""
 }
 type State = typeof initialStates
 export default class App extends React.Component {
@@ -68,29 +70,24 @@ export default class App extends React.Component {
      * 获取关联的设备(关联互动用户需展示)
      */
     asysGetsetManageInfo = () => {
-        // axios.post(API.commons.getGrade, {}).then((res: any) => {
-        //     const { body, head } = res.data
-        //     if (head.retcode === 1 && body.length > 0) {
-        //         this.setState({
-        //             associatedUsers: body
-        //         })
-        //     }
-        // }, () => {
-        // })
-
+        axios.post(API.commons.getGrade, {}).then((res: any) => {
+            const { body, head } = res.data
+            if (head.retcode === 1 && body.length > 0) {
+                this.setState({
+                    associatedUsers: body
+                })
+            }
+        }, () => {
+        })
     }
+
     /**
      * 关联互动用户
      */
-    selectInteractUser(arr:any) {
+    getCheckedKeys(arr:any) {
         console.log(arr)
         // getCurrNodeInteractData
-        const {id, treeType} = this.state.params;
-        const params = {
-            "id": id,
-            "treeType": treeType
-        }
-        axios.post(API.commons.getGrade, params).then((res: any) => {
+        axios.post(API.commons.getGrade, arr).then((res: any) => {
             const { body, head } = res.data
             if (head.retcode === 1 && body.length > 0) {
                 this.setState({
@@ -115,12 +112,34 @@ export default class App extends React.Component {
      * 改变value
      */
     changeValue = (event: any) => {
+        console.log(event)
         let data = Object.assign({}, this.state.params, {
             [event.target.name]: event.target.value
         })
         this.setState({
             params: data
         })
+    }
+    
+    /**
+     * 设置开始时间
+     */
+    setTime = (str:string,event: any) => {
+        const d = new Date(event._d)
+        const datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
+        let data = Object.assign({}, this.state.params, {
+            [str]: datetime
+        })
+        this.setState({
+            params: data
+        })
+        console.log(this.state.params)
+    }
+    /**
+     * 设置结束时间
+     */
+    setEndTime = () => {
+
     }
 
     /**
@@ -179,15 +198,13 @@ export default class App extends React.Component {
                                 <li>
                                     <label>预约开始时间<b className="required">*</b>：</label>
                                     <div className="showtime">
-                                        <i className="time-icon"></i>
-                                        <input className="time appointStartTime" value="" name="appointStartTime" type="text" placeholder="请输入开始时间" />
+                                        <DatePicker showTime placeholder="请选择开始时间" name="appointStartTime" onOk={this.setTime.bind(this,"appointStartTime")} />
                                     </div>
                                 </li>
                                 <li>
                                     <label>预约结束时间<b className="required">*</b>：</label>
                                     <div className="showtime">
-                                        <i className="time-icon"></i>
-                                        <input className="time appointEndTime" name="appointEndTime" type="text" placeholder="请输入结束时间" />
+                                        <DatePicker showTime placeholder="请选择结束时间" onOk={this.setTime.bind(this,"appointEndTime")}/>
                                     </div>
                                 </li>
                                 <li>
@@ -224,7 +241,7 @@ export default class App extends React.Component {
                                     <h3 className="list-title">组织列表</h3>
                                 </div>
                                 <div className="tree-list">
-                                    <SearchTree selectInteractUser={this.selectInteractUser.bind(this)}/>
+                                    <SearchTree getCheckedKeys={this.getCheckedKeys.bind(this)} nodeId={this.state.nodeId}/>
                                 </div>
                             </div>
                             <div className="class-r r">

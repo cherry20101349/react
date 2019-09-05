@@ -61,7 +61,8 @@ const generateList = (data:any) => {
 generateList(gData);
 
 interface Props {
-  selectInteractUser(arr:any): any
+  getCheckedKeys(arr:any): any
+  nodeId: any
 }
 
 const getParentKey = (nodeId:any, tree:any):any => {
@@ -113,11 +114,15 @@ export default class SearchTree extends React.Component<Props> {
 
   onCheck = (checkedKeys:any) => {
     console.log('onCheck', checkedKeys);
-    this.props.selectInteractUser(checkedKeys)
+    // 传值给父组件
+    if(this.props.getCheckedKeys){
+      this.props.getCheckedKeys(checkedKeys)
+    }
     this.setState({ checkedKeys });
   };
 
   render() {
+    console.log(this.props.nodeId)
     const { searchValue, expandedKeys, autoExpandParent } = this.state;
     const loop = (data:any) =>
       data.map((item:any) => {
@@ -136,12 +141,12 @@ export default class SearchTree extends React.Component<Props> {
           );
         if (item.children) {
           return (
-            <TreeNode key={item.nodeId} title={name}>
+            <TreeNode key={item.nodeId} title={name} >
               {loop(item.children)}
             </TreeNode>
           );
         }
-        return <TreeNode key={item.nodeId} title={name} />;
+        return <TreeNode key={item.nodeId} title={name} disabled={this.props.nodeId === item.nodeId} checkedKeys={this.props.nodeId}/>;
       });
     return (
       <div>
