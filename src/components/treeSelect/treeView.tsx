@@ -66,7 +66,7 @@ export default class TreeView extends React.Component {
     });
   };
 
-  onCheck = (checkedKeys:any) => {
+  onCheck = (checkedKeys:any[]) => {
     console.log('onCheck', checkedKeys);
     this.setState({ checkedKeys });
   };
@@ -76,7 +76,7 @@ export default class TreeView extends React.Component {
     this.setState({ selectedKeys });
   };
 
-  renderTreeNodes = (data:any) =>
+  renderTreeNodes = (data:any[]) =>
     data.map((item:any) => {
       if (item.children) {
         return (

@@ -4,28 +4,23 @@ import { getCourseType } from '../../assets/utils/common';
 import Header from '../../components/header/index';
 import Footer from '../../components/footer/index';
 import Modal from '../../components/modal/index';
+import Grade from '../../components/grade/index';
+import Subject from '../../components/subject/index';
 import '../../assets/styles/common.scss'
 import './index.scss';
 import { axios, API } from '../../assets/utils/index';
 import { message } from 'antd';
-import { any } from 'prop-types';
-// import Item from 'antd/lib/list/Item';
-interface Props {
-}
 let initialStates = {
     userType: 1,
     params: {
-        grade: "",
-        subject: ""
-    },
-    reqParams: {
         page: 1,
         pagesize: 12,
         tabType: 0,
         userId: 2,
         grade: "",
         subject: "",
-        keyword: ""
+        keyword: "",
+        courseId: null
     },
     courseList: [{
         rescTitle: "cherry",
@@ -34,16 +29,7 @@ let initialStates = {
         subject: "语文",
         picPath: "",
         accessoryCount: 0
-    },{
-        rescTitle: "cherry",
-        courseId: 2,
-        grade: "一年级",
-        subject: "语文",
-        picPath: "",
-        accessoryCount: 0
     }],
-    gradeList: [{gradeName: '',gradeDicId: null}],
-    subjectList: [{subName: '',subDicId: null}],
     courseTabArr: [{title:"",tabType: null,name:""}],
     tabType: 0,//当前所在tab
     isShowGradeSubject: false,//是否显示年级学科筛选条件
@@ -58,8 +44,6 @@ type State = typeof initialStates
 export default class App extends React.Component {
     state: State = initialStates
     componentWillMount() {
-        this.getGrade();
-        this.getSubject();
         this.asyncGetTeaching();
         this.getUserType();
     }
@@ -80,26 +64,6 @@ export default class App extends React.Component {
         }
         let m: Modal = new Modal(config)
         m.open()
-    }
-
-    /**
-     * 初始化年级
-     */
-    genaratorGrade = (data: any) => {
-        if (!data) return
-        return data.map((item: any, index: number) => {
-            return <li key={index} className={`${item.gradeName === this.state.params.grade ? 'active' : ''}`}>{item.gradeDicId === null ? '全部' : item.gradeName}</li>
-        })
-    }
-
-    /**
-     * 初始化学科
-     */
-    genaratorSubject = (data: any) => {
-        if (!data) return
-        return data.map((item: any, index: number) => {
-            return <li key={index} className={`${item.subName === this.state.params.subject ? 'active' : ''}`}>{item.subDicId === null ? '全部' : item.subName}</li>
-        })
     }
 
     /**
@@ -183,52 +147,33 @@ export default class App extends React.Component {
      * tab切换
      */
     clickTab = (num: number) => {
-        let data = this.state.reqParams;
-        data.tabType = num
-        this.setState({
-            reqParams: data,
-            tabType: num
+        let data = Object.assign({}, this.state.params, {
+            "tabType": num
         })
-        this.asyncGetTeaching();
+        this.setState({
+            params: data,
+            tabType: num
+        }, () => {
+            this.asyncGetTeaching();
+        })
     }
 
     /**
      * 获取教学资源
      */
     asyncGetTeaching = () => {
-        axios.post(API.myCourse.asyncGetTeaching, this.state.reqParams).then((res: any) => {
+        const { page, pagesize, tabType, userId, grade, subject, keyword } = this.state.params;
+        const params = {
+            page: page,
+            pagesize: pagesize,
+            tabType: tabType,
+            userId: userId,
+            grade: grade,
+            subject: subject,
+            keyword: keyword
+        };
+        axios.post(API.myCourse.asyncGetTeaching, params).then((res: any) => {
 
-        }, () => {
-
-        })
-    }
-
-    /**
-     * 获取年级相关
-     */
-    getGrade = () => {
-        axios.post(API.commons.getGrade, {}).then((res: any) => {
-            const { body, head } = res.data
-            if (head.retcode === 1 && body.length > 0) {
-                this.setState({
-                    gradeList: this.state.gradeList.concat(body)
-                })
-            }
-        }, () => {
-        })
-    }
-
-    /**
-     * 获取学科相关
-     */
-    getSubject = () => {
-        axios.post(API.commons.getSub).then((res: any) => {
-            const { body, head } = res.data
-            if (head.retcode === 1 && body.length > 0) {
-                this.setState({
-                    subjectList: this.state.subjectList.concat(body)
-                })
-            }
         }, () => {
 
         })
@@ -254,10 +199,11 @@ export default class App extends React.Component {
 
 
     asyncDeleteCourse = () => {
-        Modal.destory()
+        const { courseId } = this.state.params;
+        const params = { courseId: courseId };
         // studio/messageCenter/deleteCourse
-        axios.post(API.commons.getSub).then((res: any) => {
-            const { body, head } = res.data
+        axios.post(API.commons.getSub, params).then((res: any) => {
+            const { head } = res.data
             if (head.retcode === 1) {
                 this.asyncGetTeaching()
                 Modal.destory();
@@ -306,25 +252,18 @@ export default class App extends React.Component {
      * 搜索含关键字的课程
      */
     selectCourses = () => {
-        let data = this.state.reqParams
-        data.keyword = this.state.keyword
-        this.setState({
-            reqParams: data
-        })
-        this.asyncGetTeaching();
-        console.log(this.state.reqParams)
-        // this.changeReqParams("keyword")
+        this.changeparams("keyword");
     }
 
-    changeReqParams = (str: string) => {
-        let data = Object.assign({}, this.state.reqParams, {
-            keyword: this.state.keyword
+    changeparams = (str: string) => {
+        let data = Object.assign({}, this.state.params, {
+            [str]: this.state.keyword
         })
         this.setState({
-            reqParams: data
+            params: data
+        },() => {
+            this.asyncGetTeaching();
         })
-        console.log(this.state.reqParams)
-        this.asyncGetTeaching();
     }
 
     /**
@@ -339,10 +278,6 @@ export default class App extends React.Component {
     saveCourseType = () => {
         localStorage.setItem("activeIndex","-1");
         window.location.href = `/fore/personal/course/toBaseInfo?courseType=${this.state.courseType}&courseName=${this.state.courseName}&isEdit=0`;
-    }
-
-    showErrorImg = () => {
-
     }
 
     render() {
@@ -365,25 +300,21 @@ export default class App extends React.Component {
                             </ul>
                             <div className="select-wrapper">
                                 <div>
-                                    <input type="text" className="select-text" name="keyword" placeholder="搜索关键字" onChange={this.changeValue.bind(this)}/>
-                                    <button onClick={this.selectCourses.bind(this)}>搜索</button>
-                                    <button className="filler-btn" onClick={this.showGradeSubjectFiller.bind(this)}><i className="iconfont icon-funnel"></i>筛选</button>
+                                    <input type="text" className="select-text" name="keyword" placeholder="搜索关键字" onChange={this.changeValue}/>
+                                    <button onClick={this.selectCourses}>搜索</button>
+                                    <button className="filler-btn" onClick={this.showGradeSubjectFiller}><i className="iconfont icon-funnel"></i>筛选</button>
                                 </div>
                                 <ul className={ this.state.isShowGradeSubject ? 'filler-list' : 'filler-list none'}>
                                     <li className="filler-item">
                                         <span>学科：</span>
                                         <ul className="subject-list filter-nav-list">
-                                            {
-                                                this.genaratorSubject(this.state.subjectList)
-                                            }
+                                            <Subject isSelect="false" />
                                         </ul>
                                     </li>
                                     <li className="filler-item">
                                         <span>年级：</span>
                                         <ul className="grade-list filter-nav-list">
-                                            {
-                                                this.genaratorGrade(this.state.gradeList)
-                                            }
+                                            <Grade isSelect="false"/>
                                         </ul>
                                     </li>
                                 </ul>
@@ -401,28 +332,28 @@ export default class App extends React.Component {
                             <div className="course-type">
                                 <span>课程类型: <b className="snow">*</b></span>
                                 <ul className="type-list">
-                                    <li className={this.state.courseType === 0?"type-item active":"type-item"} onClick={this.setCourseType.bind(this,0)}>
+                                    <li className={this.state.courseType === 0 ? "type-item active" : "type-item"} onClick={this.setCourseType.bind(this,0)}>
                                         <div className="type-con">
                                             <i className="iconfont icon-list_zhibaoshu"></i>
                                             <p className="type-name">普通课程</p>
                                         </div>
                                         <div className="type-info">涵盖“微课课堂”、“专递课程”、“互动课程”三种类型, 范围更加广泛, 能整合不同类型课时内容。</div>
                                     </li>
-                                    <li className={this.state.courseType === 1?"type-item active":"type-item"} onClick={this.setCourseType.bind(this,1)}>
+                                    <li className={this.state.courseType === 1 ? "type-item active" : "type-item"} onClick={this.setCourseType.bind(this,1)}>
                                         <div className="type-con">
                                             <i className="iconfont icon-weike"></i>
                                             <p className="type-name">微课课程</p>
                                         </div>
                                         <div className="type-info"> 应用于老师精选视频片段，同时还包含该教学主题相关的教学课件、教学文档、练习测试等辅助性教学资源。</div>
                                     </li>
-                                    <li className={this.state.courseType === 2?"type-item active":"type-item"} onClick={this.setCourseType.bind(this,2)}>
+                                    <li className={this.state.courseType === 2 ? "type-item active" : "type-item"} onClick={this.setCourseType.bind(this,2)}>
                                         <div className="type-con">
                                             <i className="iconfont icon-dkw_luzhi"></i>
                                             <p className="type-name">专递课程</p>
                                         </div>
                                         <div className="type-info">应用于精品录播教室(智能录播系统整个拍摄过程中可用全自动、半自动、手动三种模式进行)，实时录制并进行直播。</div>
                                     </li>
-                                    <li className={this.state.courseType === 3?"type-item active":"type-item"} onClick={this.setCourseType.bind(this,3)}>
+                                    <li className={this.state.courseType === 3 ? "type-item active" : "type-item"} onClick={this.setCourseType.bind(this,3)}>
                                         <div className="type-con">
                                             <i className="iconfont icon-hudong2"></i>
                                             <p className="type-name">互动课程</p>
@@ -433,12 +364,12 @@ export default class App extends React.Component {
                             </div>
                             <div className="name-con">
                                 <label>课程标题: <b className="snow">*</b>
-                                <input type="text" className="name" name="courseName" onChange={this.changeValue.bind(this)} placeholder="请输入课程标题"/>
+                                <input type="text" className="name" name="courseName" onChange={this.changeValue} placeholder="请输入课程标题"/>
                                 </label>
                             </div>
                             <div className="save-cancel">
                                 <button className="cancel" onClick={this.creatCourse.bind(this,1)}>取消</button>
-                                <button className="save" onClick={this.saveCourseType.bind(this)}>创建</button>
+                                <button className="save" onClick={this.saveCourseType}>创建</button>
                             </div>
                         </div>
                     </div>

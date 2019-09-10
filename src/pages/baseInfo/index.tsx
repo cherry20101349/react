@@ -5,6 +5,8 @@ import Footer from '../../components/footer/index';
 import CreateCourseLeft from 'components/createCourseLeft';
 import CreateCourseHeader from 'components/createCourseHeader';
 import Modal from '../../components/modal/index';
+import Grade from '../../components/grade/index';
+import Subject from '../../components/subject/index';
 import Avatar from 'components/uploadImg';
 import './index.scss';
 import { axios, API } from '../../assets/utils/index';
@@ -26,15 +28,11 @@ let initialStates = {
     reqParams: {
         courseId: search.courseId
     },
-    gradeList: [{gradeName: "一年级"},{gradeName: "二年级"}],
-    subjectList: [{subName: "语文"},{subName: "数学"}],
 }
 type State = typeof initialStates
 export default class App extends React.Component {
     state: State = initialStates;
     componentWillMount() {
-        this.getGrade();
-        this.getSubject();
         this.judgeAddOrEdit();
     }
     /**
@@ -51,55 +49,6 @@ export default class App extends React.Component {
         } else {
             this.getCourseInfo();
         }
-    }
-    /**
-     * 初始化年级
-     */
-    genaratorGrade = (data: any) => {
-        if (!data) return
-        return data.map((item: any, index: number) => {
-            return <option key={index} value={item.gradeName}>{item.gradeName}</option>
-        })
-    }
-    /**
-     * 初始化学科
-     */
-    genaratorSubject = (data: any) => {
-        if (!data) return
-        return data.map((item: any, index: number) => {
-            return <option key={index} value={item.subName}>{item.subName}</option>
-        })
-    }
-    /**
-     * 获取年级相关
-     */
-    getGrade = () => {
-        this.state.params.grade = "一年级";//默认设置第一个
-        axios.post(API.commons.getGrade, {}).then((res: any) => {
-            const { body, head } = res.data
-            if (head.retcode === 1 && body.length > 0) {
-                this.setState({
-                    gradeList: body
-                })
-            }
-        }, () => {
-        })
-    }
-    /**
-     * 获取学科相关
-     */
-    getSubject = () => {
-        this.state.params.subject = "语文";//默认设置第一个
-        axios.post(API.commons.getSub).then((res: any) => {
-            const { body, head } = res.data
-            if (head.retcode === 1 && body.length > 0) {
-                this.setState({
-                    subjectList: body
-                })
-            }
-        }, () => {
-
-        })
     }
 
     /**
@@ -163,6 +112,8 @@ export default class App extends React.Component {
      * 改变value
      */
     changeValue = (event: any) => {
+        console.log(event.target.value)
+        console.log(event.target)
         let data = Object.assign({}, this.state.params, {
             [event.target.name]: event.target.value
         })
@@ -189,11 +140,11 @@ export default class App extends React.Component {
                                     <ul className="setting-group">
                                         <li className="setting-group-item">
                                             <label>课程标题<b className="required">*</b>：</label>
-                                            <input className="courseName" type="text" name="rescTitle" value={this.state.params.rescTitle} onChange={this.changeValue.bind(this)}/>
+                                            <input className="courseName" type="text" name="rescTitle" value={this.state.params.rescTitle} onChange={this.changeValue}/>
                                         </li>
                                         <li className="setting-group-item">
                                             <label>上课老师<b className="required">*</b>：</label>
-                                            <select name="selectTeacher" value={this.state.params.teacher} onChange={this.changeValue.bind(this)}>
+                                            <select name="selectTeacher" value={this.state.params.teacher} onChange={this.changeValue}>
                                                 <option value="">cherry</option>
                                             </select>
                                             <div className="tips-wrapper">
@@ -203,10 +154,11 @@ export default class App extends React.Component {
                                         </li>
                                         <li className="setting-group-item">
                                             <label>年级<b className="required">*</b>：</label>
-                                            <select value={this.state.params.grade} name="selectGrade" onChange={this.changeValue.bind(this)}>
-                                                {
+                                            <select value={this.state.params.grade} name="grade" onChange={this.changeValue}>
+                                                <Grade isSelect="true"/>
+                                                {/* {
                                                     this.genaratorGrade(this.state.gradeList)
-                                                }
+                                                } */}
                                             </select>
                                             <div className="tips-wrapper">
                                                 <img src={require("../../assets/images/help.png")} alt="" className="setting-icon"/>
@@ -215,10 +167,11 @@ export default class App extends React.Component {
                                         </li>
                                         <li className="setting-group-item">
                                             <label>学科<b className="required">*</b>：</label>
-                                            <select name="selectSubject" value={this.state.params.subject} onChange={this.changeValue.bind(this)}>
-                                                {
+                                            <select name="subject" value={this.state.params.subject} onChange={this.changeValue}>
+                                                <Subject isSelect="true"/>
+                                                {/* {
                                                     this.genaratorSubject(this.state.subjectList)
-                                                }
+                                                } */}
                                             </select>
                                             <div className="tips-wrapper">
                                                 <img src={require("../../assets/images/help.png")} alt="" className="setting-icon"/>
@@ -235,10 +188,10 @@ export default class App extends React.Component {
                                         </li>
                                         <li className="setting-group-item">
                                             <label>描述<b className="white">*</b>：</label>
-                                            <textarea id="remark" name="remark" value={this.state.params.remark} onChange={this.changeValue.bind(this)}></textarea>
+                                            <textarea id="remark" name="remark" value={this.state.params.remark} onChange={this.changeValue}></textarea>
                                         </li>
                                     </ul>
-                                    <button className="save" onClick={this.modCourseBaseInfo.bind(this)}>保存</button>
+                                    <button className="save" onClick={this.modCourseBaseInfo}>保存</button>
                                 {/* </form> */}
                             </div>
                             </div>

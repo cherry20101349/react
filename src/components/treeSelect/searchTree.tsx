@@ -1,54 +1,54 @@
-import * as React from 'react'
-import { Tree, Input } from 'antd';
-import 'antd/dist/antd.css';
+import * as React from "react";
+import { Tree, Input } from "antd";
+import "antd/dist/antd.css";
 const { TreeNode } = Tree;
 const { Search } = Input;
 const gData = [
-    {
-      name: '好视通大学',
-      nodeId: '0-0',
-      children: [
-        {
-          name: '0-0-0',
-          nodeId: '0-0-0',
-          children: [
-            { name: '0-0-0-0', nodeId: '0-0-0-0' },
-            { name: '0-0-0-1', nodeId: '0-0-0-1' },
-            { name: '0-0-0-2', nodeId: '0-0-0-2' },
-          ],
-        },
-        {
-          name: '0-0-1',
-          nodeId: '0-0-1',
-          children: [
-            { name: '0-0-1-0', nodeId: '0-0-1-0' },
-            { name: '0-0-1-1', nodeId: '0-0-1-1' },
-            { name: '0-0-1-2', nodeId: '0-0-1-2' },
-          ],
-        },
-        {
-          name: '0-0-2',
-          nodeId: '0-0-2',
-        },
-      ],
-    },
-    {
-      name: '0-1',
-      nodeId: '0-1',
-      children: [
-        { name: '0-1-0-0', nodeId: '0-1-0-0' },
-        { name: '0-1-0-1', nodeId: '0-1-0-1' },
-        { name: '0-1-0-2', nodeId: '0-1-0-2' },
-      ],
-    },
-    {
-      name: '0-2',
-      nodeId: '0-2',
-    },
-  ];
+  {
+    name: "好视通大学",
+    nodeId: "0-0",
+    children: [
+      {
+        name: "0-0-0",
+        nodeId: "0-0-0",
+        children: [
+          { name: "0-0-0-0", nodeId: "0-0-0-0" },
+          { name: "0-0-0-1", nodeId: "0-0-0-1" },
+          { name: "0-0-0-2", nodeId: "0-0-0-2" }
+        ]
+      },
+      {
+        name: "0-0-1",
+        nodeId: "0-0-1",
+        children: [
+          { name: "0-0-1-0", nodeId: "0-0-1-0" },
+          { name: "0-0-1-1", nodeId: "0-0-1-1" },
+          { name: "0-0-1-2", nodeId: "0-0-1-2" }
+        ]
+      },
+      {
+        name: "0-0-2",
+        nodeId: "0-0-2"
+      }
+    ]
+  },
+  {
+    name: "0-1",
+    nodeId: "0-1",
+    children: [
+      { name: "0-1-0-0", nodeId: "0-1-0-0" },
+      { name: "0-1-0-1", nodeId: "0-1-0-1" },
+      { name: "0-1-0-2", nodeId: "0-1-0-2" }
+    ]
+  },
+  {
+    name: "0-2",
+    nodeId: "0-2"
+  }
+];
 
-const dataList:any = [];
-const generateList = (data:any) => {
+const dataList: any = [];
+const generateList = (data: any) => {
   for (let i = 0; i < data.length; i++) {
     const node = data[i];
     const { nodeId } = node;
@@ -61,16 +61,16 @@ const generateList = (data:any) => {
 generateList(gData);
 
 interface Props {
-  getCheckedKeys(arr:any): any
-  nodeId: any
+  getCheckedKeys(arr: string[]): void;
+  nodeId: any;
 }
 
-const getParentKey = (nodeId:any, tree:any):any => {
+const getParentKey = (nodeId: any, tree: any): any => {
   let parentKey;
   for (let i = 0; i < tree.length; i++) {
     const node = tree[i];
     if (node.children) {
-      if (node.children.some((item:any) => item.nodeId === nodeId)) {
+      if (node.children.some((item: any) => item.nodeId === nodeId)) {
         parentKey = node.nodeId;
       } else if (getParentKey(nodeId, node.children)) {
         parentKey = getParentKey(nodeId, node.children);
@@ -83,49 +83,49 @@ const getParentKey = (nodeId:any, tree:any):any => {
 export default class SearchTree extends React.Component<Props> {
   state = {
     expandedKeys: [],
-    searchValue: '',
-    autoExpandParent: true,
+    searchValue: "",
+    autoExpandParent: true
   };
 
-
-  onExpand = (expandedKeys:any) => {
+  onExpand = (expandedKeys: any) => {
     this.setState({
       expandedKeys,
-      autoExpandParent: false,
+      autoExpandParent: false
     });
   };
 
-  onChange = (e:any) => {
+  onChange = (e: any) => {
     const { value } = e.target;
     const expandedKeys = dataList
-      .map((item:any) => {
+      .map((item: any) => {
         if (item.name.indexOf(value) > -1) {
           return getParentKey(item.nodeId, gData);
         }
         return null;
       })
-      .filter((item:any, i:any, self:any) => item && self.indexOf(item) === i);
+      .filter(
+        (item: any, i: any, self: any) => item && self.indexOf(item) === i
+      );
     this.setState({
       expandedKeys,
       searchValue: value,
-      autoExpandParent: true,
+      autoExpandParent: true
     });
   };
 
-  onCheck = (checkedKeys:any) => {
-    console.log('onCheck', checkedKeys);
+  onCheck = (checkedKeys: string[]) => {
+    console.log("onCheck", checkedKeys);
     // 传值给父组件
-    if(this.props.getCheckedKeys){
-      this.props.getCheckedKeys(checkedKeys)
+    if (this.props.getCheckedKeys) {
+      this.props.getCheckedKeys(checkedKeys);
     }
     this.setState({ checkedKeys });
   };
 
   render() {
-    console.log(this.props.nodeId)
     const { searchValue, expandedKeys, autoExpandParent } = this.state;
-    const loop = (data:any) =>
-      data.map((item:any) => {
+    const loop = (data: any) =>
+      data.map((item: any) => {
         const index = item.name.indexOf(searchValue);
         const beforeStr = item.name.substr(0, index);
         const afterStr = item.name.substr(index + searchValue.length);
@@ -133,7 +133,7 @@ export default class SearchTree extends React.Component<Props> {
           index > -1 ? (
             <span>
               {beforeStr}
-              <span style={{ color: '#f50' }}>{searchValue}</span>
+              <span style={{ color: "#f50" }}>{searchValue}</span>
               {afterStr}
             </span>
           ) : (
@@ -141,16 +141,27 @@ export default class SearchTree extends React.Component<Props> {
           );
         if (item.children) {
           return (
-            <TreeNode key={item.nodeId} title={name} >
+            <TreeNode key={item.nodeId} title={name}>
               {loop(item.children)}
             </TreeNode>
           );
         }
-        return <TreeNode key={item.nodeId} title={name} disabled={this.props.nodeId === item.nodeId} checkedKeys={this.props.nodeId}/>;
+        return (
+          <TreeNode
+            key={item.nodeId}
+            title={name}
+            disabled={this.props.nodeId === item.nodeId}
+            checkedKeys={this.props.nodeId}
+          />
+        );
       });
     return (
       <div>
-        <Search style={{ marginBottom: 8 }} placeholder="Search" onChange={this.onChange} />
+        <Search
+          style={{ marginBottom: 8 }}
+          placeholder="Search"
+          onChange={this.onChange}
+        />
         <Tree
           checkable
           onExpand={this.onExpand}

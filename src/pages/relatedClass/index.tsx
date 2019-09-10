@@ -45,7 +45,7 @@ export default class App extends React.Component {
     genaratorClass = (data: any) => {
         if (!data) return
         return data.map((item: any, index: number) => {
-            return  <tr className="class-item" key={index}><td className="className" title={item.className}>{item.className}</td><td title={item.integration}>{item.integration}</td><td><a className="manage " href="/studio/groupManage/class" title="管理">管理</a><span className="delete-class" onClick={this.deleteClass.bind(this)} title="删除">删除</span></td></tr>
+            return  <tr className="class-item" key={index}><td className="className" title={item.className}>{item.className}</td><td title={item.integration}>{item.integration}</td><td><a className="manage " href="/studio/groupManage/class" title="管理">管理</a><span className="delete-class" onClick={this.deleteClass} title="删除">删除</span></td></tr>
         })
     }
     /**
@@ -197,9 +197,9 @@ export default class App extends React.Component {
                        <div className="related-class">
                             <h3 className="title manage">
                                 <span>关联班级</span>
-                                <a className="fr" href="javascript:;" id="addBtn" onClick={this.relatedClass.bind(this)}>添加班级</a>
+                                <a className="fr" href="javascript:;" id="addBtn" onClick={this.relatedClass}>添加班级</a>
                                 {
-                                   this.state.isShowClassPoints? <a className="fr" id="exportPointC" href="javascript:;" onClick={this.exportPointC.bind(this)}>导出班级积分</a> : <a className={this.state.isShowClassPoints ? "none" : "fr"}  id="exportPointS" href="javascript:;" onClick={this.exportPointS.bind(this)}>导出学生积分</a>
+                                   this.state.isShowClassPoints? <a className="fr" id="exportPointC" href="javascript:;" onClick={this.exportPointC}>导出班级积分</a> : <a className={this.state.isShowClassPoints ? "none" : "fr"}  id="exportPointS" href="javascript:;" onClick={this.exportPointS}>导出学生积分</a>
                                 }
                             </h3>
                             {
@@ -211,7 +211,7 @@ export default class App extends React.Component {
                                 </ul>
                                 <div className="class-wrapper" id="classWrapper">
                                     {
-                                        this.state.isShowClassPoints?
+                                        this.state.isShowClassPoints ?
                                         <div className="class">
                                             <table className="table classTable fl">
                                                 <thead>
@@ -250,10 +250,10 @@ export default class App extends React.Component {
                                 </div>
                             </div>
                             :
-                               <div className="no-class" id="noClass"><i></i><p>暂无班级</p></div>
+                            <div className="no-class" id="noClass"><i></i><p>暂无班级</p></div>
                              }
                             <div className="align-center relate-operate">
-                                <button className="btn-next" onClick={this.toSetClassHour.bind(this)}>{!Number(search.isEdit) ? "下一步" : "保存"}</button>
+                                <button className="btn-next" onClick={this.toSetClassHour}>{!Number(search.isEdit) ? "下一步" : "保存"}</button>
                             </div>
                        </div>
                     </div>
@@ -262,66 +262,65 @@ export default class App extends React.Component {
                 <Footer />  
                 {/* <!--关联班级--> */}
                 {
-                    this.state.isShowRelatedClass ?
+                    this.state.isShowRelatedClass &&
                     <div className="modal-mask">
-                    <div className="selectClass center">
-                        <h4 className="prompt-tit prompt-tit1">关联班级<em className="close" onClick={this.closeBombBox.bind(this)}></em></h4>
-                        <p className="add-class">若下拉列表中无对应的班级，请点击<a href="javascript:" onClick={this.addClass.bind(this)}>新增班级</a></p>
-                        <div id="treeview" className="treeview">
-                            <TransferTree />
-                        </div>
-                        <div className="save-cancel save-cancel1">
-                            <button className="cancel" onClick={this.closeBombBox.bind(this)}>取消</button>
-                            <button className="save" id="saveClass">确定</button>
+                        <div className="selectClass center">
+                            <h4 className="prompt-tit prompt-tit1">关联班级<em className="close" onClick={this.closeBombBox}></em></h4>
+                            <p className="add-class">若下拉列表中无对应的班级，请点击<a href="javascript:" onClick={this.addClass}>新增班级</a></p>
+                            <div id="treeview" className="treeview">
+                                <TransferTree />
+                            </div>
+                            <div className="save-cancel save-cancel1">
+                                <button className="cancel" onClick={this.closeBombBox}>取消</button>
+                                <button className="save" id="saveClass">确定</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                : ""
                 }
                 {
-                    this.state.isShowAddClass ?
+                    this.state.isShowAddClass &&
                     // <!--新增班級-->
                     <div className="modal-mask">
-                    <div className="addClassInfo to_center">
-                        {/* <form method="post" action="${ctx}/studio/groupManage/addClassGroup" id="js_class_add"> */}
-                        <input type="hidden" id="id" name="id" value="0"/>
-                        <h4 className="title">新增班级</h4>
-                        <ul className="form-group">
-                            <li>
-                                <label className="form-label">班级名<b className="required">*</b></label>
-                                <div className="form-control">
-                                    <input id="teamName" type="text" name="teamName"/>
-                                </div>
-                            </li>
-                            <li>
-                                <label className="form-label">学校组织<b className="required">*</b></label>
-                                <div className="form-control select">
-                                    <select className="form-select">
-                                        <option value="3"></option>
-                                    </select>
-                                </div>
-                            </li>
-                            <li>
-                                <label className="form-label">录播教室<b className="required">*</b></label>
-                                <div className="form-control select">
-                                    <select className="form-select">
-                                    </select>
-                                </div>
-                            </li>
-                            <li>
-                                <label className="form-label">备注<b className="required white">*</b></label>
-                                <div className="form-control textarea">
-                                    <textarea className="form-textarea" placeholder="请输入备注内容" name="remark"></textarea>
-                                </div>
-                            </li>
-                            <li className="save-cancel">
-                                <button className="cancel" onClick={this.closeBombBox.bind(this)}>取消</button>
-                                <button className="save" onClick={this.submitAddClass.bind(this)}>保存</button>
-                            </li>
-                        </ul>
-                        {/* </form> */}
+                        <div className="addClassInfo to_center">
+                            {/* <form method="post" action="${ctx}/studio/groupManage/addClassGroup" id="js_class_add"> */}
+                            <input type="hidden" id="id" name="id" value="0"/>
+                            <h4 className="title">新增班级</h4>
+                            <ul className="form-group">
+                                <li>
+                                    <label className="form-label">班级名<b className="required">*</b></label>
+                                    <div className="form-control">
+                                        <input id="teamName" type="text" name="teamName"/>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label className="form-label">学校组织<b className="required">*</b></label>
+                                    <div className="form-control select">
+                                        <select className="form-select">
+                                            <option value="3"></option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label className="form-label">录播教室<b className="required">*</b></label>
+                                    <div className="form-control select">
+                                        <select className="form-select">
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label className="form-label">备注<b className="required white">*</b></label>
+                                    <div className="form-control textarea">
+                                        <textarea className="form-textarea" placeholder="请输入备注内容" name="remark"></textarea>
+                                    </div>
+                                </li>
+                                <li className="save-cancel">
+                                    <button className="cancel" onClick={this.closeBombBox}>取消</button>
+                                    <button className="save" onClick={this.submitAddClass}>保存</button>
+                                </li>
+                            </ul>
+                            {/* </form> */}
+                        </div>
                     </div>
-                    </div> : ""
                 }
             </div >
         )

@@ -108,28 +108,28 @@ export default class App extends React.Component {
                                     <div className="set-course">
                                         <div className="set-course-name">
                                             <i className="course-icon"></i>
-                                            <input id="courseName" name="courseName" type="text" onChange={this.changeValue.bind(this)}  placeholder="创建课程名" value="课程823lml"></input>
-                                            <span className="add-section" title="增加章节" onClick={this.addSection.bind(this)}><i className="iconfont icon-jia"></i>+ 增加章节</span>
+                                            <input id="courseName" name="courseName" type="text" onChange={this.changeValue}  placeholder="创建课程名" value="课程823lml"></input>
+                                            <span className="add-section" title="增加章节" onClick={this.addSection}><i className="iconfont icon-jia"></i>+ 增加章节</span>
                                         </div>
                                         <ul className="set-section">
                                             <li className="course-chapter">
                                                 <div>
                                                     <i className="icon up"></i>
                                                     <i className="course-icon"></i>
-                                                    <input type="text" name="chapterName" className="section-name" onChange={this.changeValue.bind(this)} placeholder="章节名称" value="章节1"></input>
-                                                    <span className="add-task" onClick={this.addTask.bind(this)} title="增加课时"><i className="iconfont icon-jia"></i>+ 增加课时</span>
-                                                    <i className="delete iconfont icon-qingchu" title="删除" onClick={this.deleteSection.bind(this)}></i>
+                                                    <input type="text" name="chapterName" className="section-name" onChange={this.changeValue} placeholder="章节名称" value="章节1"></input>
+                                                    <span className="add-task" onClick={this.addTask} title="增加课时"><i className="iconfont icon-jia"></i>+ 增加课时</span>
+                                                    <i className="delete iconfont icon-qingchu" title="删除" onClick={this.deleteSection}></i>
                                                 </div>
                                                 <ul className="set-task1">
                                                     <li className="course-task">
                                                         <i className="icon2"></i>
-                                                        <input type="text" name="taskName" className="task-name" onChange={this.changeValue.bind(this)} placeholder="课时名称" value="课程823lml"/>
+                                                        <input type="text" name="taskName" className="task-name" onChange={this.changeValue} placeholder="课时名称" value="课程823lml"/>
                                                     </li>
                                                 </ul>
                                             </li>
                                         </ul>
                                         <div className="save-con">
-                                            <button className="save" onClick={this.modCourse.bind(this)}>{!Number(search.isEdit) ? "下一步" : "保存"}</button>
+                                            <button className="save" onClick={this.modCourse}>{!Number(search.isEdit) ? "下一步" : "保存"}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@ export default class App extends React.Component {
     <input type="hidden" id="upload-timestamp" value=""/>
     <input type="hidden" id="upload-index" value=""/>
     <input type="hidden" id="upload-deptId" value="${deptId}"/> */}
-    <i className="close" onClick={this.closeBombBox.bind(this)}></i>
+    <i className="close" onClick={this.closeBombBox}></i>
     <div className="title">上传资源</div>
     <ul className="form-group">
         <li>
@@ -166,7 +166,10 @@ export default class App extends React.Component {
 
             </div>
         </li>
-        <li className="save-cancel"><button className="cancel" onClick={this.closeBombBox.bind(this)}>取消</button><button className="save" type="button" onClick={this.submitUploadTask.bind(this)}>确定</button></li>
+        <li className="save-cancel">
+            <button className="cancel" onClick={this.closeBombBox}>取消</button>
+            <button className="save" type="button" onClick={this.submitUploadTask}>确定</button>
+        </li>
     </ul>
 
     {/* <div id="loading" className="loading">
