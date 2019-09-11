@@ -3,6 +3,7 @@ import './index.scss'
 import { axios, API } from '../../assets/utils/index';
 interface Props{
     isSelect: string
+    getSelectedGrade?:(str:string) => void
 }
 let initialStates = {
     gradeList: [{gradeName: '',gradeDicId: 0}]
@@ -13,6 +14,7 @@ export default class Grade extends React.Component<Props>{
     componentWillMount() {
         this.getGrade();
     }
+
     /**
      * 初始化年级
      */
@@ -22,10 +24,11 @@ export default class Grade extends React.Component<Props>{
             if(this.props.isSelect === "true") {
                 return <option key={index} value={item.gradeName}>{item.gradeName}</option>
             } else {
-                return <li key={index}>{item.gradeDicId === 0 ? '全部' : item.gradeName}</li>
+                return <li key={index} onClick={this.selectGrade.bind(this, item.gradeName)}>{item.gradeDicId === 0 ? '全部' : item.gradeName}</li>
             }
         })
     }
+
     /**
      * 获取年级相关
      */
@@ -49,6 +52,15 @@ export default class Grade extends React.Component<Props>{
             }
         }, () => {
         })
+    }
+
+    /**
+     * 选择年级
+     */
+    selectGrade = (str: string) => {
+        if(this.props.getSelectedGrade){
+            this.props.getSelectedGrade(str);
+        }
     }
     render() {
         return (

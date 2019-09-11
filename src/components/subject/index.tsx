@@ -3,6 +3,7 @@ import './index.scss'
 import { axios, API } from '../../assets/utils/index';
 interface Props{
     isSelect: string
+    getSelectedSubject?:(str:string) => void
 }
 let initialStates = {
     subjectList: [{subName: '',subDicId: 0}],
@@ -22,7 +23,7 @@ export default class Grade extends React.Component<Props, State>{
             if(this.props.isSelect === "true") {
                 return <option key={index} value={item.subName}>{item.subName}</option>
             } else {
-                return <li key={index}>{item.subDicId === 0 ? '全部' : item.subName}</li>
+                return <li key={index} onClick={this.selectSubject.bind(this, item.subName)}>{item.subDicId === 0 ? '全部' : item.subName}</li>
             }
         })
     }
@@ -50,6 +51,15 @@ export default class Grade extends React.Component<Props, State>{
         }, () => {
 
         })
+    }
+
+    /**
+     * 选择学科
+     */
+    selectSubject = (str: string) => {
+        if(this.props.getSelectedSubject){
+            this.props.getSelectedSubject(str);
+        }
     }
     render() {
         return (

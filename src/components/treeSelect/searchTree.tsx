@@ -61,8 +61,8 @@ const generateList = (data: any) => {
 generateList(gData);
 
 interface Props {
-  getCheckedKeys(arr: string[]): void;
   nodeId: any;
+  getCheckedKeys?(arr: string[]): void;
 }
 
 const getParentKey = (nodeId: any, tree: any): any => {

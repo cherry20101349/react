@@ -156,9 +156,6 @@ export default class App extends React.Component {
                                             <label>年级<b className="required">*</b>：</label>
                                             <select value={this.state.params.grade} name="grade" onChange={this.changeValue}>
                                                 <Grade isSelect="true"/>
-                                                {/* {
-                                                    this.genaratorGrade(this.state.gradeList)
-                                                } */}
                                             </select>
                                             <div className="tips-wrapper">
                                                 <img src={require("../../assets/images/help.png")} alt="" className="setting-icon"/>
@@ -169,9 +166,6 @@ export default class App extends React.Component {
                                             <label>学科<b className="required">*</b>：</label>
                                             <select name="subject" value={this.state.params.subject} onChange={this.changeValue}>
                                                 <Subject isSelect="true"/>
-                                                {/* {
-                                                    this.genaratorSubject(this.state.subjectList)
-                                                } */}
                                             </select>
                                             <div className="tips-wrapper">
                                                 <img src={require("../../assets/images/help.png")} alt="" className="setting-icon"/>

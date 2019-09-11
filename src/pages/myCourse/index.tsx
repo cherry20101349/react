@@ -47,6 +47,20 @@ export default class App extends React.Component {
         this.asyncGetTeaching();
         this.getUserType();
     }
+    
+    /**
+     * 获取选择的年级
+     */
+    getSelectedGrade = (str: string) => {
+        console.log(str)
+    }
+
+    /**
+     * 获取选择的学科
+     */
+    getSelectedSubject = (str: string) => {
+        console.log(str)
+    }
     showModal = () => {
         let config = {
             visible: true, 
@@ -308,18 +322,18 @@ export default class App extends React.Component {
                                     <li className="filler-item">
                                         <span>学科：</span>
                                         <ul className="subject-list filter-nav-list">
-                                            <Subject isSelect="false" />
+                                            <Subject isSelect="false" getSelectedSubject={this.getSelectedSubject}/>
                                         </ul>
                                     </li>
                                     <li className="filler-item">
                                         <span>年级：</span>
                                         <ul className="grade-list filter-nav-list">
-                                            <Grade isSelect="false"/>
+                                            <Grade isSelect="false" getSelectedGrade={this.getSelectedGrade}/>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
-                            <ul id="course_list_vue" className="course-list">
+                            <ul className="course-list">
                                 {
                                     this.genaratorCourse(this.state.courseList)
                                 }
