@@ -6,7 +6,8 @@ interface Props{
     getSelectedGrade?:(str:string) => void
 }
 let initialStates = {
-    gradeList: [{gradeName: '',gradeDicId: 0}]
+    gradeList: [{gradeName: '',gradeDicId: 0}],
+    grade: ""
 }
 type State = typeof initialStates
 export default class Grade extends React.Component<Props>{
@@ -24,7 +25,7 @@ export default class Grade extends React.Component<Props>{
             if(this.props.isSelect === "true") {
                 return <option key={index} value={item.gradeName}>{item.gradeName}</option>
             } else {
-                return <li key={index} onClick={this.selectGrade.bind(this, item.gradeName)}>{item.gradeDicId === 0 ? '全部' : item.gradeName}</li>
+                return <li key={index} className={item.gradeName === this.state.grade ? 'active' : ''} onClick={this.selectGrade.bind(this, item.gradeName)}>{item.gradeDicId === 0 ? '全部' : item.gradeName}</li>
             }
         })
     }
@@ -46,9 +47,15 @@ export default class Grade extends React.Component<Props>{
         axios.post(API.commons.getGrade, {}).then((res: any) => {
             const { body, head } = res.data
             if (head.retcode === 1 && body.length > 0) {
-                this.setState({
-                    gradeList: body
-                })
+                if(this.props.isSelect === "true") {
+                    this.setState({
+                        gradeList: body
+                    })
+                } else {
+                    this.setState({
+                        gradeList: this.state.gradeList.concat(body)
+                    })
+                }
             }
         }, () => {
         })
@@ -58,6 +65,9 @@ export default class Grade extends React.Component<Props>{
      * 选择年级
      */
     selectGrade = (str: string) => {
+        this.setState({
+            grade: str
+        })
         if(this.props.getSelectedGrade){
             this.props.getSelectedGrade(str);
         }

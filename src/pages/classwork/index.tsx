@@ -90,7 +90,7 @@ export default class App extends React.Component {
                                                         {
                                                             item.taskList.map(function(item1,index1){
                                                                 return (
-                                                                    <li className="tast-list-item">
+                                                                    <li className="tast-list-item" key={index1}>
                                                                         <div className="item-info">
                                                                             <i className="circle"></i>
                                                                             <p className="task-name">{item1.rescTitle}</p>

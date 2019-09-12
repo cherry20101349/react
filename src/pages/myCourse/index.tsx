@@ -7,6 +7,7 @@ import Modal from '../../components/modal/index';
 import Grade from '../../components/grade/index';
 import Subject from '../../components/subject/index';
 import '../../assets/styles/common.scss'
+import '../../assets/fonts/iconfont.css'
 import './index.scss';
 import { axios, API } from '../../assets/utils/index';
 import { message } from 'antd';
@@ -316,7 +317,7 @@ export default class App extends React.Component {
                                 <div>
                                     <input type="text" className="select-text" name="keyword" placeholder="搜索关键字" onChange={this.changeValue}/>
                                     <button onClick={this.selectCourses}>搜索</button>
-                                    <button className="filler-btn" onClick={this.showGradeSubjectFiller}><i className="iconfont icon-funnel"></i>筛选</button>
+                                    <button className="filler-btn" onClick={this.showGradeSubjectFiller}><i className="iconfont icon-funnel"></i></button>
                                 </div>
                                 <ul className={ this.state.isShowGradeSubject ? 'filler-list' : 'filler-list none'}>
                                     <li className="filler-item">

@@ -6,7 +6,13 @@ interface Props{
     getSelectedSubject?:(str:string) => void
 }
 let initialStates = {
-    subjectList: [{subName: '',subDicId: 0}],
+    subjectList: [
+        {
+            subName: '',
+            subDicId: 0
+        }
+    ],
+    subject:""
 }
 type State = typeof initialStates
 export default class Grade extends React.Component<Props, State>{
@@ -23,7 +29,7 @@ export default class Grade extends React.Component<Props, State>{
             if(this.props.isSelect === "true") {
                 return <option key={index} value={item.subName}>{item.subName}</option>
             } else {
-                return <li key={index} onClick={this.selectSubject.bind(this, item.subName)}>{item.subDicId === 0 ? '全部' : item.subName}</li>
+                return <li key={index} className={item.subName === this.state.subject ? 'active' : ''} onClick={this.selectSubject.bind(this, item.subName)}>{item.subDicId === 0 ? '全部' : item.subName}</li>
             }
         })
     }
@@ -44,9 +50,15 @@ export default class Grade extends React.Component<Props, State>{
         axios.post(API.commons.getSub).then((res: any) => {
             const { body, head } = res.data
             if (head.retcode === 1 && body.length > 0) {
-                this.setState({
-                    subjectList: this.state.subjectList.concat(body)
-                })
+                if(this.props.isSelect === "true") {
+                    this.setState({
+                        subjectList: body
+                    })
+                } else {
+                    this.setState({
+                        subjectList: this.state.subjectList.concat(body)
+                    })
+                }
             }
         }, () => {
 
@@ -57,10 +69,14 @@ export default class Grade extends React.Component<Props, State>{
      * 选择学科
      */
     selectSubject = (str: string) => {
+        this.setState({
+            subject: str
+        })
         if(this.props.getSelectedSubject){
             this.props.getSelectedSubject(str);
         }
     }
+
     render() {
         return (
             <>
